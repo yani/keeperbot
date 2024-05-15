@@ -150,7 +150,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                         ],
                     ))
                 );
-                $browser->get('https://keeperfx.net/api/v1/workshop/search?q=' . \urlencode($search_term))->then(function (Psr\Http\Message\ResponseInterface $response) use ($message, $search_term) {
+                $browser->get($_ENV['KEEPERFX_URL'] . '/api/v1/workshop/search?q=' . \urlencode($search_term))->then(function (Psr\Http\Message\ResponseInterface $response) use ($message, $search_term) {
 
                     $body = (string)$response->getBody();
 
@@ -184,7 +184,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                     }
 
                     if($workshop_items_count == 1){
-                        $url = 'https://keeperfx.net/workshop/item/' . $workshop_items[0]['id'];
+                        $url = $_ENV['KEEPERFX_URL'] . '/workshop/item/' . $workshop_items[0]['id'];
                         $message->reply($url);
                         return;
                     }
@@ -206,7 +206,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                 ],
             ))))
                 ->withFollowRedirects(false)
-                ->get('https://keeperfx.net/workshop/random/map')
+                ->get($_ENV['KEEPERFX_URL'] . '/workshop/random/map')
                 ->then(function (Psr\Http\Message\ResponseInterface $response) use ($message) {
 
                     // Get the URL
@@ -217,7 +217,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                     }
 
                     // Make absolute URL
-                    $url = 'https://keeperfx.net' . $url;
+                    $url = $_ENV['KEEPERFX_URL'] . '' . $url;
                     $url = explode('#', $url)[0];
 
                     // Send to user
@@ -238,7 +238,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                 ],
             ))))
                 ->withFollowRedirects(false)
-                ->get('https://keeperfx.net/workshop/random/campaign')
+                ->get($_ENV['KEEPERFX_URL'] . '/workshop/random/campaign')
                 ->then(function (Psr\Http\Message\ResponseInterface $response) use ($message) {
 
                     // Get the URL
@@ -249,7 +249,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                     }
 
                     // Make absolute URL
-                    $url = 'https://keeperfx.net' . $url;
+                    $url = $_ENV['KEEPERFX_URL'] . '' . $url;
                     $url = explode('#', $url)[0];
 
                     // Send to user
@@ -289,7 +289,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                                 $rounded_size = \round($prototype['size_in_bytes'] / 1024 / 1024, 2);
                                 $message->reply(
                                     "Prototype [{$prototype['workflow_run_id']}]: {$prototype['workflow_title']} ({$rounded_size}MiB) -> " . 
-                                    "https://keeperfx.net/download/prototype/" . $prototype['filename']
+                                    "{$_ENV['KEEPERFX_URL']}/download/prototype/" . $prototype['filename']
                                 );
                             });
                             return;
@@ -338,7 +338,7 @@ function getPrototype(int $run_id): array|false
             'verify_peer_name' => false
         ],
     )));
-    $promise = $browser->get('https://keeperfx.net/api/v1/prototype/run/' . $run_id);
+    $promise = $browser->get($_ENV['KEEPERFX_URL'] . '/api/v1/prototype/run/' . $run_id);
 
     $response = await($promise);
 
