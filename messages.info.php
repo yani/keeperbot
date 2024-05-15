@@ -9,34 +9,34 @@
 return [
     
     // General
-    '!keeperklan'      => 'Get a link to the Keeper Klan forums',
-    '!megathread'      => 'Get a link to the Megathread on Reddit',
-    '!wiki'            => 'Get a link to the Fandom Dungeon Keeper wiki',
+    '!keeperklan'      => '[Link] Keeper Klan forums',
+    '!megathread'      => '[Link] Megathread on Reddit',
+    '!wiki'            => '[Link] Fandom Dungeon Keeper wiki',
     
     // DK1 / KFX
-    '!keeperfx'        => 'Get a link to KeeperFX.net',
-    '!lubiki'          => 'Get a link to the Lubiki homepage',
-    '!unearth'         => 'Get a link to Unearth (on the KeeperFX workshop)',
-    '!workshop'        => 'Get a link to the KeeperFX workshop',
-    '!kfxrepo'         => 'Get a link to the KeeperFX Github repo',
+    '!keeperfx'        => '[Link] KeeperFX.net',
+    '!lubiki'          => '[Link] Lubiki homepage',
+    '!unearth'         => '[Link] Unearth (on the KeeperFX workshop)',
+    '!workshop'        => '[Link] KeeperFX workshop',
+    '!kfxrepo'         => '[Link] KeeperFX Github repo',
 
     // DK2
-    '!openkeeper'      => 'Get a link to the OpenKeeper Github repo (DK2)',
-    '!gim'             => 'Get a link to the General Improvement Mod (DK2)',
-    '!ember'           => 'Get a link to the Ember Github repo (DK2)',
+    '!openkeeper'      => '[Link] OpenKeeper Github repo (DK2)',
+    '!gim'             => '[Link] General Improvement Mod (DK2)',
+    '!ember'           => '[Link] Ember Github repo (DK2)',
 
     // Meme
-    '!walter'          => ':flag_fr: :french_bread: :croissant: hon hon',
-    '!rap'             => 'Get a video for the Dungeon Keeper rap video',
-    '!germanrap'       => 'Get a video for the German Dungeon Keeper rap video',
+    '!walter'          => 'Print the French war cry',
+    '!rap'             => '[Link] Dungeon Keeper rap video',
+    '!germanrap'       => '[Link] German Dungeon Keeper rap video',
 
     // Bugs
-    '!lvl10spellbug'   => 'Explain what the Level 10 spell bug does (DK1)',
-    '!overflowbug'     => 'Explain what the Overflow bug does (DK1)',
+    '!lvl10spellbug'   => 'Explains what the Level 10 spell bug does (DK1)',
+    '!overflowbug'     => 'Explains what the Overflow bug does (DK1)',
 
     // Dynamic commands
     '!keeperbot'              => 'Send yourself a DM with information about the commands',
-    '!workshop <search_term>' => 'Search the workshop for a file and link it',
+    '!workshop <search_term>' => 'Search the workshop for a file and [Link] it',
     '!slap <person>'          => 'Slap a person',
     '!roll'                   => 'Roll a number between 1 and 100',
     '!roll <max>'             => 'Roll a number between 1 and the given max number',
