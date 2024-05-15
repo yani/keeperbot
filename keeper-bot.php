@@ -19,7 +19,8 @@ $dotenv = new Dotenv();
 $dotenv->load(__DIR__ . '/.env');
 
 // Load commands
-$commands = include __DIR__ . '/messages.php';
+$commands     = include __DIR__ . '/messages.php';
+$command_info = include __DIR__ . '/messages.info.php';
 
 if(!isset($_ENV['DISCORD_BOT_TOKEN']) || empty($_ENV['DISCORD_BOT_TOKEN'])){
     die('Invalid Discord bot token');
@@ -33,11 +34,11 @@ $discord = new Discord([
 ]);
 
 // Handle discord ready event (after connected and ready)
-$discord->on('ready', function (Discord $discord) use ($commands) {
+$discord->on('ready', function (Discord $discord) use ($commands, $command_info) {
     echo "Bot is ready!", PHP_EOL;
 
     // Listen for messages.
-    $discord->on(Event::MESSAGE_CREATE, function (Message $message, Discord $discord) use ($commands) {
+    $discord->on(Event::MESSAGE_CREATE, function (Message $message, Discord $discord) use ($commands, $command_info) {
 
         echo "{$message->author->username}: {$message->content}", PHP_EOL;
 
@@ -79,8 +80,26 @@ $discord->on('ready', function (Discord $discord) use ($commands) {
             ]);
             sort($command_strings);
 
+            // Get longest command char count
+            $command_char_count_max = 0;
+            foreach($command_strings as $string){
+                if(\strlen($string) > $command_char_count_max){
+                    $command_char_count_max = \strlen($string);
+                }
+            }
+
             // Create text string
             $text = "Hello there Keeper!\n\nCommands:```";
+
+            foreach($command_strings as $command_string)
+            {
+                if(isset($command_info[$command_string])){
+                    $text .= \str_pad($command_string, $command_char_count_max +3) . $command_info[$command_string];
+                } else {
+                    $text .= $command_string;
+                }
+            }
+
             $text .= \implode("\n", $command_strings);
             $text .= '```';
 
