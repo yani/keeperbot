@@ -35,12 +35,13 @@ return [
     '!overflowbug'     => 'Explains what the Overflow bug does (DK1)',
 
     // Dynamic commands
-    '!keeperbot'              => 'Send yourself a DM with information about the commands',
-    '!workshop <search_term>' => 'Search the workshop for a file and [Link] it',
-    '!slap <person>'          => 'Slap a person',
-    '!roll'                   => 'Roll a number between 1 and 100',
-    '!roll <max>'             => 'Roll a number between 1 and the given max number',
-    '!randommap'              => 'Get a random map from the KeeperFX workshop',
-    '!randomcampaign'         => 'Get a random campaign from the KeeperFX workshop',
-    '!prototype <run_id>'     => 'Get or wait on a prototype to share (only 1 wait loop possible)',
+    '!keeperbot'                   => 'Send yourself a DM with information about the commands',
+    '!workshop <search_term>'      => 'Search the workshop for a file and [Link] it',
+    '!slap <person>'               => 'Slap a person',
+    '!roll'                        => 'Roll a number between 1 and 100',
+    '!roll <max>'                  => 'Roll a number between 1 and the given max number',
+    '!randommap'                   => 'Get a random map from the KeeperFX workshop',
+    '!randomcampaign'              => 'Get a random campaign from the KeeperFX workshop',
+    '!prototype <run_id>'          => 'Get or wait on a prototype to share (only 1 wait loop possible)',
+    '!mapnumber <map_number>'      => 'Check if a specific map number is available on the KeeperFX workshop'
 ];

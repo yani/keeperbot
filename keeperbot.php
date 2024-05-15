@@ -196,6 +196,54 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
             return;
         }
 
+        // Workshop map number search command
+        if(\strpos($message->content, '!mapnumber ') === 0){
+            if(strlen($message->content) > \strlen('!mapnumber ')){
+                $map_number = (int) \substr($message->content, \strlen('!mapnumber '));
+
+                if($map_number < 202 || $map_number > 32767){
+                    $message->reply("Mapnumber must be between 202 and 32767");
+                    return;
+                }
+
+                $browser = new Browser(
+                    new \React\Socket\Connector(array(
+                        'tls' => [
+                            'verify_peer' => false,
+                            'verify_peer_name' => false
+                        ],
+                    ))
+                );
+                $browser->get($_ENV['KEEPERFX_URL'] . '/api/v1/workshop/map_number/' . $map_number)->then(function (Psr\Http\Message\ResponseInterface $response) use ($message, $map_number) {
+
+                    $body = (string)$response->getBody();
+
+                    if(empty($body)){
+                        $message->reply("Failed to connect to workshop API...");
+                        return;
+                    }
+
+                    $json = \json_decode($body, true);
+                    if(empty($json) || !is_array($json) || !isset($json['available']) || !is_bool($json['available'])){
+                        $message->reply("Invalid server response...");
+                        return;
+                    }
+
+                    if($json['available'] === true){
+                        $message->reply(":white_check_mark: Map number **{$map_number}** is available!");
+                    } else {
+                        $message->reply(":no_entry_sign: Map number **{$map_number}** is NOT available!");
+                    }
+
+                    return;
+
+                }, function (Exception $e) {
+                    echo 'Error: ' . $e->getMessage() . PHP_EOL;
+                });
+            }
+            return;
+        }
+
         // Random map
         if($message->content === '!randommap'){
 
