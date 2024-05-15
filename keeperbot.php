@@ -174,7 +174,12 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                     }
                     
                     if($workshop_items_count >= 2){
-                        $message->reply("**{$workshop_items_count}** workshop items found: https://keeperfx.net/workshop/browse?search=" . \urlencode($search_term));
+                        $titles = [];
+                        foreach($workshop_items as $item){
+                            $titles[] = '`' . $item['name'] . '`';
+                        }
+                        $titles_string = implode(', ', $titles);
+                        $message->reply("**{$workshop_items_count}** workshop items found for \"**{$search_term}**\": {$titles_string}");
                         return;
                     }
 
