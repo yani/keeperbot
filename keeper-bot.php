@@ -298,9 +298,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                         }
     
                         // Sleep and go to next try
-                        // sleep($seconds_between_tries);
-                        sleep(1);
-                        echo "slep" . PHP_EOL;
+                        sleep($seconds_between_tries);
                         $current_try++;
                     }
 
