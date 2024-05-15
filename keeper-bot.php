@@ -142,7 +142,11 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
             if(strlen($message->content) > \strlen('!workshop ')){
                 $search_term = \substr($message->content, \strlen('!workshop '));
 
-                $browser = new Browser();
+                $browser = new Browser(
+                    new \React\Socket\Connector(array(
+                        'ssl_verify' => false,
+                    ))
+                );
                 $browser->get('https://keeperfx.local/api/v1/workshop/search?q=' . \urlencode($search_term))->then(function (Psr\Http\Message\ResponseInterface $response) use ($message, $search_term) {
 
                     $body = (string)$response->getBody();
@@ -187,7 +191,9 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
         // Random map
         if($message->content === '!randommap'){
 
-            (new Browser())
+            (new Browser(new \React\Socket\Connector(array(
+                'ssl_verify' => false,
+            ))))
                 ->withFollowRedirects(false)
                 ->get('https://keeperfx.local/workshop/random/map')
                 ->then(function (Psr\Http\Message\ResponseInterface $response) use ($message) {
@@ -214,7 +220,9 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
         // Random campaign
         if($message->content === '!randomcampaign'){
 
-            (new Browser())
+            (new Browser(new \React\Socket\Connector(array(
+                'ssl_verify' => false,
+            ))))
                 ->withFollowRedirects(false)
                 ->get('https://keeperfx.local/workshop/random/campaign')
                 ->then(function (Psr\Http\Message\ResponseInterface $response) use ($message) {
@@ -312,7 +320,9 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
 
 function getPrototype(int $run_id): array|false
 {
-    $browser = new Browser();
+    $browser = new Browser(new \React\Socket\Connector(array(
+        'ssl_verify' => false,
+    )));
     $promise = $browser->get('https://keeperfx.local/api/v1/prototype/run/' . $run_id);
 
     $response = await($promise);
