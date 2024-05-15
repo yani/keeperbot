@@ -89,7 +89,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
             }
 
             // Create text string
-            $text = "Hello there Keeper!\n\nCommands:```";
+            $text = "Hello there Keeper!\n\nCommands:```\n";
 
             foreach($command_strings as $command_string)
             {
@@ -98,9 +98,9 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                 } else {
                     $text .= $command_string;
                 }
+                $text .= "\n";
             }
 
-            $text .= \implode("\n", $command_strings);
             $text .= '```';
 
             // React on the message so other people know its handled
