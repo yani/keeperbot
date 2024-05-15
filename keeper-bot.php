@@ -144,7 +144,10 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
 
                 $browser = new Browser(
                     new \React\Socket\Connector(array(
-                        'ssl_verify' => false,
+                        'tls' => [
+                            'verify_peer' => false,
+                            'verify_peer_name' => false
+                        ],
                     ))
                 );
                 $browser->get('https://keeperfx.local/api/v1/workshop/search?q=' . \urlencode($search_term))->then(function (Psr\Http\Message\ResponseInterface $response) use ($message, $search_term) {
@@ -192,7 +195,10 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
         if($message->content === '!randommap'){
 
             (new Browser(new \React\Socket\Connector(array(
-                'ssl_verify' => false,
+                'tls' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false
+                ],
             ))))
                 ->withFollowRedirects(false)
                 ->get('https://keeperfx.local/workshop/random/map')
@@ -221,7 +227,10 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
         if($message->content === '!randomcampaign'){
 
             (new Browser(new \React\Socket\Connector(array(
-                'ssl_verify' => false,
+                'tls' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false
+                ],
             ))))
                 ->withFollowRedirects(false)
                 ->get('https://keeperfx.local/workshop/random/campaign')
@@ -321,7 +330,10 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
 function getPrototype(int $run_id): array|false
 {
     $browser = new Browser(new \React\Socket\Connector(array(
-        'ssl_verify' => false,
+        'tls' => [
+            'verify_peer' => false,
+            'verify_peer_name' => false
+        ],
     )));
     $promise = $browser->get('https://keeperfx.local/api/v1/prototype/run/' . $run_id);
 
