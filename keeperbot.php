@@ -19,8 +19,8 @@ $dotenv = new Dotenv();
 $dotenv->load(__DIR__ . '/.env');
 
 // Load commands
-$commands     = include __DIR__ . '/messages.php';
-$command_info = include __DIR__ . '/messages.info.php';
+$commands     = include __DIR__ . '/commands.php';
+$command_info = include __DIR__ . '/commands.info.php';
 
 if(!isset($_ENV['DISCORD_BOT_TOKEN']) || empty($_ENV['DISCORD_BOT_TOKEN'])){
     die('Invalid Discord bot token');
