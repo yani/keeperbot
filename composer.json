@@ -1,0 +1,21 @@
+{
+    "name": "yani/keeper-bot",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Yani\\KeeperBot\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Yani",
+            "email": "yani@protonmail.com"
+        }
+    ],
+    "require": {
+        "team-reflex/discord-php": "^7.3",
+        "react/async": "^4.2",
+        "symfony/dotenv": "^7.0"
+    }
+}
