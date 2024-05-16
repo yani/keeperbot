@@ -3,9 +3,10 @@
 include __DIR__.'/vendor/autoload.php';
 
 use Discord\Discord;
-use Discord\Parts\Channel\Message;
-use Discord\WebSockets\Intents;
 use Discord\WebSockets\Event;
+use Discord\WebSockets\Intents;
+use Discord\Parts\Embed\Embed;
+use Discord\Parts\Channel\Message;
 use Discord\Builders\MessageBuilder;
 
 use React\Http\Browser;
@@ -381,6 +382,99 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
 
                 return;
             }
+        }
+
+        // Last alpha
+        if($message->content === '!alpha'){
+
+            (new Browser(new \React\Socket\Connector(array(
+                'tls' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false
+                ],
+            ))))
+                ->get($_ENV['KEEPERFX_URL'] . '/api/v1/alpha/latest')
+                ->then(function (Psr\Http\Message\ResponseInterface $response) use ($discord, $message) {
+
+                    // Get body of response
+                    $body = (string)$response->getBody();
+                    if(empty($body)){
+                        $message->reply("Failed to connect to website API...");
+                        return;
+                    }
+
+                    // Decode JSON
+                    $json = \json_decode($body, true);
+                    if(empty($json) || !is_array($json) || !isset($json['alpha_build']) || !is_array($json['alpha_build'])){
+                        $message->reply("Invalid server response...");
+                        return;
+                    }
+
+                    // Handle description (add ellipsis and markdown)
+                    $description = $json['alpha_build']['workflow_title'];
+                    $description = \preg_replace('/\s*(\(.*?\…)/', '…', $description);
+                    $description = \preg_replace('/\(\#(\d{1,6})\)/', '([#$1](https://github.com/dkfans/keeperfx/issues/$1))', $description);
+
+                    // Create embed for the alpha patch
+                    $embed = new Embed($discord, [
+                        'title'       => $json['alpha_build']['name'],
+                        'description' => $description,
+                        'url'         => $json['alpha_build']['download_url'],
+                        'timestamp'   => (new \DateTime($json['alpha_build']['timestamp']))->format('Y-m-d H:i'),
+                        'footer'      => ['text' => ((string) \round($json['alpha_build']['size_in_bytes'] / 1024 / 1024, 2)) . 'MiB'],
+                        'color'       => 11797236, // #b402f4
+                    ]);
+
+                    // Send the embed as a message to the user
+                    $message->channel->sendEmbed($embed);
+
+                });
+
+            return;
+        }
+
+        // Last alpha
+        if($message->content === '!stable'){
+
+            (new Browser(new \React\Socket\Connector(array(
+                'tls' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false
+                ],
+            ))))
+                ->get($_ENV['KEEPERFX_URL'] . '/api/v1/stable/latest')
+                ->then(function (Psr\Http\Message\ResponseInterface $response) use ($discord, $message) {
+
+                    // Get body of response
+                    $body = (string)$response->getBody();
+                    if(empty($body)){
+                        $message->reply("Failed to connect to website API...");
+                        return;
+                    }
+
+                    // Decode JSON
+                    $json = \json_decode($body, true);
+                    if(empty($json) || !is_array($json) || !isset($json['release']) || !is_array($json['release'])){
+                        $message->reply("Invalid server response...");
+                        return;
+                    }
+
+                    // Create embed for the alpha patch
+                    $embed = new Embed($discord, [
+                        'title'       => $json['release']['name'],
+                        'description' => 'Full stable release for KeeperFX ' . $json['release']['tag'],
+                        'url'         => $json['release']['download_url'],
+                        'timestamp'   => (new \DateTime($json['release']['timestamp']))->format('Y-m-d H:i'),
+                        'footer'      => ['text' => ((string) \round($json['release']['size_in_bytes'] / 1024 / 1024, 2)) . 'MiB'],
+                        'color'       => 455682, // #06f402
+                    ]);
+
+                    // Send the embed as a message to the user
+                    $message->channel->sendEmbed($embed);
+
+                });
+
+            return;
         }
 
         // Make sure this message was a command

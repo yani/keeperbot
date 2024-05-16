@@ -20,6 +20,8 @@ return [
     '!workshop'        => '[Link] KeeperFX workshop',
     '!kfxrepo'         => '[Link] KeeperFX Github repo',
     '!buildkfx'        => '[Link] How to start building the KeeperFX codebase',
+    '!alpha'           => 'Get the latest KeeperFX alpha patch',
+    '!stable'          => 'Get the latest KeeperFX stable version',
 
     // DK2
     '!openkeeper'      => '[Link] OpenKeeper Github repo (DK2)',
