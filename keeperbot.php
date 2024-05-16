@@ -384,7 +384,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
             }
         }
 
-        // Last alpha
+        // Latest alpha patch
         if($message->content === '!alpha'){
 
             (new Browser(new \React\Socket\Connector(array(
@@ -433,7 +433,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
             return;
         }
 
-        // Last alpha
+        // Latest stable release
         if($message->content === '!stable'){
 
             (new Browser(new \React\Socket\Connector(array(
@@ -459,7 +459,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                         return;
                     }
 
-                    // Create embed for the alpha patch
+                    // Create embed for the stable release
                     $embed = new Embed($discord, [
                         'title'       => $json['release']['name'],
                         'description' => 'Full stable release for KeeperFX ' . $json['release']['tag'],
@@ -467,6 +467,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                         'timestamp'   => (new \DateTime($json['release']['timestamp']))->format('Y-m-d H:i'),
                         'footer'      => ['text' => ((string) \round($json['release']['size_in_bytes'] / 1024 / 1024, 2)) . 'MiB'],
                         'color'       => 455682, // #06f402
+                        'thumbnail'   => $_ENV['KEEPERFX_URL'] . '/img/download.png',
                     ]);
 
                     // Send the embed as a message to the user
