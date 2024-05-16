@@ -19,6 +19,7 @@ return [
     '!unearth'         => '[Link] Unearth (on the KeeperFX workshop)',
     '!workshop'        => '[Link] KeeperFX workshop',
     '!kfxrepo'         => '[Link] KeeperFX Github repo',
+    '!buildkfx'        => '[Link] How to start building the KeeperFX codebase',
 
     // DK2
     '!openkeeper'      => '[Link] OpenKeeper Github repo (DK2)',
