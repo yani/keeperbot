@@ -467,7 +467,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                         'timestamp'   => (new \DateTime($json['release']['timestamp']))->format('Y-m-d H:i'),
                         'footer'      => ['text' => ((string) \round($json['release']['size_in_bytes'] / 1024 / 1024, 2)) . 'MiB'],
                         'color'       => 455682, // #06f402
-                        'thumbnail'   => $_ENV['KEEPERFX_URL'] . '/img/download.png',
+                        'thumbnail'   => ['url' => $_ENV['KEEPERFX_URL'] . '/img/download.png'],
                     ]);
 
                     // Send the embed as a message to the user
