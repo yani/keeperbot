@@ -19,6 +19,7 @@ return [
     '!unearth'         => 'https://keeperfx.net/workshop/item/1/unearth',
     '!workshop'        => 'You can find custom KeeperFX content like custom maps, campaigns, tools, assets, and much more on the KeeperFX.net workshop: https://keeperfx.net/workshop/browse',
     '!kfxrepo'         => 'https://github.com/dkfans/keeperfx',
+    '!buildkfx'        => 'https://keeperfx.net/wiki/building-keeperfx',
 
     // DK2
     '!openkeeper'      => 'https://github.com/tonihele/OpenKeeper',
