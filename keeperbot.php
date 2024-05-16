@@ -180,7 +180,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                             if($count >= 25){
                                 $leftover_count = $workshop_items_count - $count;
                                 $break_char = " "; // <- Beware! This string contains a non breaking space
-                                $titles[] = "... [**[+{$leftover_count}{$break_char}more]**]({$_ENV['KEEPERFX_URL']}/workshop/browse?search=" . \urlencode($search_term) . ")";
+                                $titles[] = "... [**[+{$leftover_count}{$break_char}more]**](<{$_ENV['KEEPERFX_URL']}/workshop/browse?search=" . \urlencode($search_term) . ">)";
                                 break;
                             }
                             $titles[] = '[**' . $item['name'] . '**](' . $_ENV['KEEPERFX_URL'] . '/workshop/item/' . $item['id'] . ')';
