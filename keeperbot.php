@@ -169,17 +169,27 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                     $workshop_items_count = \count($json['workshop_items']);
                     
                     if($workshop_items_count <= 0){
-                        $message->reply("No workshop items found");
+                        $message->channel->sendMessage(MessageBuilder::new()->setContent("No workshop items found for \"**{$search_term}**\""));
                         return;
                     }
                     
                     if($workshop_items_count >= 2){
                         $titles = [];
+                        $count = 0;
                         foreach($workshop_items as $item){
-                            $titles[] = '`' . $item['name'] . '`';
+                            if($count >= 25){
+                                $leftover_count = $workshop_items_count - $count;
+                                $break_char = " "; // <- Beware! This string contains a non breaking space
+                                $titles[] = "... [**[+{$leftover_count}{$break_char}more]**]({$_ENV['KEEPERFX_URL']}/workshop/browse?search=" . \urlencode($search_term) . ")";
+                                break;
+                            }
+                            $titles[] = '[**' . $item['name'] . '**](' . $_ENV['KEEPERFX_URL'] . '/workshop/item/' . $item['id'] . ')';
+                            $count++;
                         }
-                        $titles_string = implode(', ', $titles);
-                        $message->reply("**{$workshop_items_count}** workshop items found for \"**{$search_term}**\": {$titles_string}");
+                        $titles_string = implode(' - ', $titles);
+                        $message->channel->sendMessage(MessageBuilder::new()->setContent(
+                            "**{$workshop_items_count}** workshop items found for \"**{$search_term}**\": {$titles_string}"
+                        ));
                         return;
                     }
 
