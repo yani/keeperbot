@@ -174,18 +174,26 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                     }
                     
                     if($workshop_items_count >= 2){
+
+                        // Create list of workshop items
                         $titles = [];
                         $count = 0;
                         foreach($workshop_items as $item){
-                            if($count >= 25){
-                                $leftover_count = $workshop_items_count - $count;
-                                $break_char = " "; // <- Beware! This string contains a non breaking space
-                                $titles[] = "... [**[+{$leftover_count}{$break_char}more]**](<{$_ENV['KEEPERFX_URL']}/workshop/browse?search=" . \urlencode($search_term) . ">)";
+                            if($count >= 25){ // 25 is absolute max in a discord massage
                                 break;
                             }
-                            $titles[] = '[**' . $item['name'] . '**](' . $_ENV['KEEPERFX_URL'] . '/workshop/item/' . $item['id'] . ')';
+                            $titles[] = '[**' . $item['name'] . '**](<' . $_ENV['KEEPERFX_URL'] . '/workshop/item/' . $item['id'] . '>)';
                             $count++;
                         }
+
+                        // Add [+x more]
+                        if($workshop_items_count > $count){
+                            $leftover_count = $workshop_items_count - $count;
+                            $break_char = " "; // <- Beware! This string contains a non breaking space
+                            $titles[] = "... [**[+{$leftover_count}{$break_char}more]**](<{$_ENV['KEEPERFX_URL']}/workshop/browse?search=" . \urlencode($search_term) . ">)";
+                        }
+
+                        // Create the string and send it
                         $titles_string = implode(' - ', $titles);
                         $message->channel->sendMessage(MessageBuilder::new()->setContent(
                             "**{$workshop_items_count}** workshop items found for \"**{$search_term}**\": {$titles_string}"
