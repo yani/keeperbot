@@ -22,6 +22,7 @@ return [
     '!buildkfx'        => '[Link] How to start building the KeeperFX codebase',
     '!alpha'           => 'Get the latest KeeperFX alpha patch',
     '!stable'          => 'Get the latest KeeperFX stable version',
+    '!controls'        => '[Link] KeeperFX controls',
 
     // DK2
     '!openkeeper'      => '[Link] OpenKeeper Github repo (DK2)',
