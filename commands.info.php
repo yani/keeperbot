@@ -23,6 +23,7 @@ return [
     '!alpha'           => 'Get the latest KeeperFX alpha patch',
     '!stable'          => 'Get the latest KeeperFX stable version',
     '!controls'        => '[Link] KeeperFX controls',
+    '!palette(s)'      => '[Link] Palettes used by DK1 (KFX)',
 
     // DK2
     '!openkeeper'      => '[Link] OpenKeeper Github repo (DK2)',

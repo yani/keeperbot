@@ -21,6 +21,8 @@ return [
     '!kfxrepo'         => 'https://github.com/dkfans/keeperfx',
     '!buildkfx'        => 'https://keeperfx.net/wiki/building-keeperfx',
     '!controls'        => 'https://keeperfx.net/wiki/new-game-controls-and-commands',
+    '!palette'         => 'https://github.com/dkfans/FXInfo/wiki/Palettes',
+    '!palettes'        => 'https://github.com/dkfans/FXInfo/wiki/Palettes',
 
     // DK2
     '!openkeeper'      => 'https://github.com/tonihele/OpenKeeper',
