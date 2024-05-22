@@ -121,6 +121,15 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
             return;
         }
 
+        // Fake ban command
+        if(\strpos($message->content, '!ban ') === 0){
+            if(strlen($message->content) > \strlen('!ban ')){
+                $fake_banned_person = \substr($message->content, \strlen('!ban '));
+                $message->channel->sendMessage(MessageBuilder::new()->setContent("**{$fake_banned_person} has been banned from the server!**"));
+            }
+            return;
+        }
+
         // Roll command
         if(\strpos($message->content, '!roll') === 0){
             if(\strlen($message->content) > \strlen('!roll ')){
