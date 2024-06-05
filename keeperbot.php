@@ -339,10 +339,27 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
         if(\strpos($message->content, '!prototype ') === 0){
             if(strlen($message->content) > \strlen('!prototype ')){
                 $param = \substr($message->content, \strlen('!prototype '));
-                $run_id = (int)$param;
-                if($run_id === 0){
+                $run_id = $param;
+                if(!\is_numeric($run_id)){
                     $message->reply("Invalid workflow run ID");
                     return;
+                }
+
+                $prototype = getPrototype($run_id);
+
+                if($prototype)
+                {
+                    $rounded_size = \round($prototype['size_in_bytes'] / 1024 / 1024, 2);
+                    $$message->channel->sendMessage(MessageBuilder::new()->setContent(
+                        "Prototype [{$prototype['workflow_run_id']}]: [**__{$prototype['workflow_title']}__**]({$_ENV['KEEPERFX_URL']}/download/prototype/{$prototype['filename']}) ({$rounded_size}MiB)"
+                    ));
+                } else {
+
+                    $message->react("\:alarm_clock:");
+
+                    $message->channel->sendMessage(MessageBuilder::new()->setContent(
+                        "⏰ Waiting for prototype to be ready...  __(Do not request a new prototype in the meantime!)__"
+                    ));
                 }
                 
                 $promise = new Promise(function () use ($message, $run_id) {
@@ -368,14 +385,6 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                                 );
                             });
                             return;
-                        }
-    
-                        // If the first try fails we'll tell the user that we start waiting for it
-                        if($current_try === 0){
-                            $message->react(':alarm_clock:');
-                            // new Promise(function() use ($message){
-                                // $message->reply("Waiting for prototype to be ready... _(Do not request a new prototype in the meantime!)_");
-                            // });
                         }
     
                         // Sleep and go to next try
@@ -500,7 +509,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
     });
 });
 
-function getPrototype(int $run_id): array|false
+function getPrototype($run_id): array|false
 {
     $browser = new Browser(new \React\Socket\Connector(array(
         'tls' => [
