@@ -353,6 +353,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
                     $message->channel->sendMessage(MessageBuilder::new()->setContent(
                         "Prototype [{$prototype['workflow_run_id']}]: [**__{$prototype['workflow_title']}__**]({$_ENV['KEEPERFX_URL']}/download/prototype/{$prototype['filename']}) ({$rounded_size}MiB)"
                     ));
+                    return;
                 } else {
                     $message->channel->sendMessage(MessageBuilder::new()->setContent(
                         "Waiting for prototype to be ready...  __(Do not request a new prototype in the meantime!)__"
