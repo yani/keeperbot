@@ -17,6 +17,7 @@ return [
     '!keeperfx'        => 'https://keeperfx.net',
     '!lubiki'          => 'https://lubiki.keeperklan.com/index.php',
     '!unearth'         => 'https://keeperfx.net/workshop/item/1/unearth',
+    '!implauncher'     => 'https://keeperfx.net/workshop/item/410/implauncher-beta',
     '!workshop'        => 'You can find custom KeeperFX content like custom maps, campaigns, tools, assets, and much more on the KeeperFX.net workshop: https://keeperfx.net/workshop/browse',
     '!kfxrepo'         => 'https://github.com/dkfans/keeperfx',
     '!buildkfx'        => 'https://keeperfx.net/wiki/building-keeperfx',

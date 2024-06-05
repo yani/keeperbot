@@ -18,6 +18,7 @@ return [
     '!lubiki'          => '[Link] Lubiki homepage',
     '!unearth'         => '[Link] Unearth (on the KeeperFX workshop)',
     '!workshop'        => '[Link] KeeperFX workshop',
+    '!implauncher'     => '[Link] ImpLauncher',
     '!kfxrepo'         => '[Link] KeeperFX Github repo',
     '!buildkfx'        => '[Link] How to start building the KeeperFX codebase',
     '!alpha'           => 'Get the latest KeeperFX alpha patch',
