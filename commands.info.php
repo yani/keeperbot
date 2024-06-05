@@ -34,7 +34,7 @@ return [
 
     // Meme
     '!walter'          => 'Print the French war cry',
-    '!rap'             => '[Link] Dungeon Keeper rap video',
+    '!rap, !dkrap'     => '[Link] Dungeon Keeper rap video',
     '!germanrap'       => '[Link] German Dungeon Keeper rap video',
 
     // Bugs

@@ -34,6 +34,7 @@ return [
     // Meme
     '!walter'          => ':flag_fr: :french_bread: :croissant: hon hon',
     '!rap'             => 'https://www.youtube.com/watch?v=vH67duada9E',
+    '!dkrap'           => 'https://www.youtube.com/watch?v=vH67duada9E',
     '!germanrap'       => 'https://www.youtube.com/watch?v=xXkfyGQsjAk',
 
     // Bugs
