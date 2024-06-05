@@ -25,6 +25,7 @@ return [
     '!stable'          => 'Get the latest KeeperFX stable version',
     '!controls'        => '[Link] KeeperFX controls',
     '!palette(s)'      => '[Link] Palettes used by DK1 (KFX)',
+    '!music'           => '[Link] Background .ogg music files',
 
     // DK2
     '!openkeeper'      => '[Link] OpenKeeper Github repo (DK2)',

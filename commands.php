@@ -24,6 +24,7 @@ return [
     '!controls'        => 'https://keeperfx.net/wiki/new-game-controls-and-commands',
     '!palette'         => 'https://github.com/dkfans/FXInfo/wiki/Palettes',
     '!palettes'        => 'https://github.com/dkfans/FXInfo/wiki/Palettes',
+    '!music'           => 'https://keeperfx.local/workshop/item/393/keeperfx-music',
 
     // DK2
     '!openkeeper'      => 'https://github.com/tonihele/OpenKeeper',
