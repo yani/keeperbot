@@ -49,7 +49,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
         }
 
         // Make sure this message starts with a exclamation mark
-        if(\stripos($message->content, '!') !== 0){
+        if(\strpos($message->content, '!') !== 0){
             return;
         }
 
@@ -401,7 +401,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
         }
 
         // Latest alpha patch
-        if (preg_match('/^!alpha(?:\s+(\d+))?$/', $message->content, $matches)) {
+        if (preg_match('/^!alpha(?:\s+(\d+))?$/i', $message->content, $matches)) {
             // Check if a specific alpha version is requested
             $alphaNumber = isset($matches[1]) ? $matches[1] : null;
 
