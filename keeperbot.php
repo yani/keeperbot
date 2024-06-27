@@ -401,50 +401,57 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
         }
 
         // Latest alpha patch
-        if($message->content === '!alpha'){
+        if (preg_match('/^!alpha(?:\s+(\d+))?$/', $message->content, $matches)) {
+            // Check if a specific alpha version is requested
+            $alphaNumber = isset($matches[1]) ? $matches[1] : null;
 
-            (new Browser(new \React\Socket\Connector(array(
-                'tls' => [
-                    'verify_peer' => false,
-                    'verify_peer_name' => false
-                ],
-            ))))
-                ->get($_ENV['KEEPERFX_URL'] . '/api/v1/alpha/latest')
-                ->then(function (Psr\Http\Message\ResponseInterface $response) use ($discord, $message) {
+            if ($alphaNumber) {
+                // Handle the case where a specific alpha version is requested
+                $message->reply("A fix for this can be found in [Alpha {$alphaNumber}](https://keeperfx.net/download/alpha/keeperfx-1_1_0_{$alphaNumber}_Alpha-patch.7z). See here: https://keeperfx.net/downloads/alpha");
+            } else {
+                // Handle the case where the latest alpha version is requested
+                (new Browser(new \React\Socket\Connector(array(
+                    'tls' => [
+                        'verify_peer' => false,
+                        'verify_peer_name' => false
+                    ],
+                ))))
+                    ->get($_ENV['KEEPERFX_URL'] . '/api/v1/alpha/latest')
+                    ->then(function (Psr\Http\Message\ResponseInterface $response) use ($discord, $message) {
 
-                    // Get body of response
-                    $body = (string)$response->getBody();
-                    if(empty($body)){
-                        $message->reply("Failed to connect to website API...");
-                        return;
-                    }
+                        // Get body of response
+                        $body = (string)$response->getBody();
+                        if (empty($body)) {
+                            $message->reply("Failed to connect to website API...");
+                            return;
+                        }
 
-                    // Decode JSON
-                    $json = \json_decode($body, true);
-                    if(empty($json) || !is_array($json) || !isset($json['alpha_build']) || !is_array($json['alpha_build'])){
-                        $message->reply("Invalid server response...");
-                        return;
-                    }
+                        // Decode JSON
+                        $json = \json_decode($body, true);
+                        if (empty($json) || !is_array($json) || !isset($json['alpha_build']) || !is_array($json['alpha_build'])) {
+                            $message->reply("Invalid server response...");
+                            return;
+                        }
 
-                    // Handle description (add ellipsis and markdown)
-                    $description = $json['alpha_build']['workflow_title'];
-                    $description = \preg_replace('/\s*(\(.*?\…)/', '…', $description);
-                    $description = \preg_replace('/\(\#(\d{1,6})\)/', '([#$1](https://github.com/dkfans/keeperfx/issues/$1))', $description);
+                        // Handle description (add ellipsis and markdown)
+                        $description = $json['alpha_build']['workflow_title'];
+                        $description = \preg_replace('/\s*(\(.*?\…)/', '…', $description);
+                        $description = \preg_replace('/\(\#(\d{1,6})\)/', '([#$1](https://github.com/dkfans/keeperfx/issues/$1))', $description);
 
-                    // Create embed for the alpha patch
-                    $embed = new Embed($discord, [
-                        'title'       => $json['alpha_build']['name'],
-                        'description' => $description,
-                        'url'         => $json['alpha_build']['download_url'],
-                        'timestamp'   => (new \DateTime($json['alpha_build']['timestamp']))->format('Y-m-d H:i'),
-                        'footer'      => ['text' => ((string) \round($json['alpha_build']['size_in_bytes'] / 1024 / 1024, 2)) . 'MiB'],
-                        'color'       => 11797236, // #b402f4
-                    ]);
+                        // Create embed for the alpha patch
+                        $embed = new Embed($discord, [
+                            'title'       => $json['alpha_build']['name'],
+                            'description' => $description,
+                            'url'         => $json['alpha_build']['download_url'],
+                            'timestamp'   => (new \DateTime($json['alpha_build']['timestamp']))->format('Y-m-d H:i'),
+                            'footer'      => ['text' => ((string) \round($json['alpha_build']['size_in_bytes'] / 1024 / 1024, 2)) . 'MiB'],
+                            'color'       => 11797236, // #b402f4
+                        ]);
 
-                    // Send the embed as a message to the user
-                    $message->channel->sendEmbed($embed);
-
-                });
+                        // Send the embed as a message to the user
+                        $message->channel->sendEmbed($embed);
+                    });
+            }
 
             return;
         }

@@ -51,5 +51,6 @@ return [
     '!randommap'                   => 'Get a random map from the KeeperFX workshop',
     '!randomcampaign'              => 'Get a random campaign from the KeeperFX workshop',
     '!prototype <run_id>'          => 'Get or wait on a prototype to share (only 1 wait loop possible)',
+    '!alpha <run_id>'              => 'Get told the fix for this is in the specific alpha',
     '!mapnumber <map_number>'      => 'Check if a specific map number is available on the KeeperFX workshop'
 ];
