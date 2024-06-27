@@ -11,7 +11,7 @@ return [
     // General
     '!keeperklan'      => 'https://keeperklan.com',
     '!megathread'      => 'https://www.reddit.com/r/dungeonkeeper/comments/1319ns5/dungeon_keeper_megathread/',
-    '!wiki'            => 'https://dungeonkeeper.fandom.com/wiki/Dungeon_Keeper_Wiki',
+    '!fandom'          => 'https://dungeonkeeper.fandom.com/wiki/Dungeon_Keeper_Wiki',
     
     // DK1 / KFX
     '!keeperfx'        => 'https://keeperfx.net',
@@ -25,6 +25,7 @@ return [
     '!palette'         => 'https://github.com/dkfans/FXInfo/wiki/Palettes',
     '!palettes'        => 'https://github.com/dkfans/FXInfo/wiki/Palettes',
     '!music'           => 'https://keeperfx.local/workshop/item/393/keeperfx-music',
+    '!wiki'            => 'https://github.com/dkfans/keeperfx/wiki',
 
     // DK2
     '!openkeeper'      => 'https://github.com/tonihele/OpenKeeper',
