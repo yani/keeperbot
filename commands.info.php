@@ -11,7 +11,7 @@ return [
     // General
     '!keeperklan'      => '[Link] Keeper Klan forums',
     '!megathread'      => '[Link] Megathread on Reddit',
-    '!wiki'            => '[Link] Fandom Dungeon Keeper wiki',
+    '!fandom'          => '[Link] Fandom Dungeon Keeper wiki',
     
     // DK1 / KFX
     '!keeperfx'        => '[Link] KeeperFX.net',
@@ -26,6 +26,7 @@ return [
     '!controls'        => '[Link] KeeperFX controls',
     '!palette(s)'      => '[Link] Palettes used by DK1 (KFX)',
     '!music'           => '[Link] Background .ogg music files',
+    '!wiki'            => '[Link] Provides a link to the KeeperFX wiki',
 
     // DK2
     '!openkeeper'      => '[Link] OpenKeeper Github repo (DK2)',
