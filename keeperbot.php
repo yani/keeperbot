@@ -113,7 +113,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
         }
 
         // Slap command
-        if(\strpos($message->content, '!slap ') === 0){
+        if(\stripos($message->content, '!slap ') === 0){
             if(strlen($message->content) > \strlen('!slap ')){
                 $slapped_person = \substr($message->content, \strlen('!slap '));
                 $message->channel->sendMessage(MessageBuilder::new()->setContent("**_{$author_tag} slaps {$slapped_person}!_**"));
@@ -122,7 +122,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
         }
 
         // Fake ban command
-        if(\strpos($message->content, '!ban ') === 0){
+        if(\stripos($message->content, '!ban ') === 0){
             if(strlen($message->content) > \strlen('!ban ')){
                 $fake_banned_person = \substr($message->content, \strlen('!ban '));
                 $message->channel->sendMessage(MessageBuilder::new()->setContent("**{$fake_banned_person} has been banned from the server!**"));
@@ -131,7 +131,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
         }
 
         // Roll command
-        if(\strpos($message->content, '!roll') === 0){
+        if(\stripos($message->content, '!roll') === 0){
             if(\strlen($message->content) > \strlen('!roll ')){
                 $max_roll_amount = (int) \substr($message->content, \strlen('!roll '));
                 if($max_roll_amount <= 0){
@@ -148,7 +148,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
         }
 
         // Workshop search command
-        if(\strpos($message->content, '!workshop ') === 0){
+        if(\stripos($message->content, '!workshop ') === 0){
             if(strlen($message->content) > \strlen('!workshop ')){
                 $search_term = \substr($message->content, \strlen('!workshop '));
 
@@ -225,7 +225,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
         }
 
         // Workshop map number search command
-        if(\strpos($message->content, '!mapnumber ') === 0){
+        if(\stripos($message->content, '!mapnumber ') === 0){
             if(strlen($message->content) > \strlen('!mapnumber ')){
                 $map_number = (int) \substr($message->content, \strlen('!mapnumber '));
 
@@ -336,7 +336,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
             return;
         }
 
-        if(\strpos($message->content, '!prototype ') === 0){
+        if(\stripos($message->content, '!prototype ') === 0){
             if(strlen($message->content) > \strlen('!prototype ')){
                 $param = \substr($message->content, \strlen('!prototype '));
                 $run_id = $param;
@@ -401,7 +401,7 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
         }
 
         // Latest alpha patch
-        if (preg_match('/^!alpha(?:\s+(\d+))?$/', $message->content, $matches)) {
+        if (preg_match('/^!alpha(?:\s+(\d+))?$/i', $message->content, $matches)) {
             // Check if a specific alpha version is requested
             $alphaNumber = isset($matches[1]) ? $matches[1] : null;
 
