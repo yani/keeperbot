@@ -12,6 +12,7 @@ return [
     '!keeperklan'      => '[Link] Keeper Klan forums',
     '!megathread'      => '[Link] Megathread on Reddit',
     '!fandom'          => '[Link] Fandom Dungeon Keeper wiki',
+    '!lon'             => '[Link] Lords of Nether homepage',
     
     // DK1 / KFX
     '!keeperfx'        => '[Link] KeeperFX.net',
