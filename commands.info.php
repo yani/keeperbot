@@ -28,6 +28,7 @@ return [
     '!palette, !palettes'     => '[Link] Palettes used by DK1 (KFX)',
     '!music'                  => '[Link] Background .ogg music files',
     '!wiki'                   => '[Link] Provides a link to the KeeperFX wiki',
+    '!moon, !moonphase'       => 'Shows info about the KeeperFX moon phase',
 
     // DK2
     '!openkeeper'      => '[Link] OpenKeeper Github repo (DK2)',

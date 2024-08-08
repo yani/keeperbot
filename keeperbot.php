@@ -304,6 +304,79 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
             return;
         }
 
+        // Moon phase
+        if($message->content === '!moon' || $message->content === '!moonphase'){
+
+            (new Browser(new \React\Socket\Connector(array(
+                'tls' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false
+                ],
+            ))))
+                ->get($_ENV['KEEPERFX_URL'] . '/api/v1/moonphase')
+                ->then(function (Psr\Http\Message\ResponseInterface $response) use ($message, $discord) {
+
+                        // Get body of response
+                        $body = (string)$response->getBody();
+                        if (empty($body)) {
+                            $message->reply("Failed to connect to website API...");
+                            return;
+                        }
+
+                        // Decode JSON
+                        $json = \json_decode($body, true);
+                        if (empty($json) || !is_array($json) || !isset($json['phase'])) {
+                            $message->reply("Invalid server response...");
+                            return;
+                        }
+
+                        // Get variables
+                        $title             = (string) ($json['name'] ?? 'Unknown');
+                        $phase             = \round((float)($json['phase'] ?? 0), 10);
+                        $image             = $_ENV['KEEPERFX_URL'] . (string) ($json['img'] ?? '');
+                        $is_full_moon      = (bool) $json['is_full_moon'];
+                        $is_near_full_moon = (bool) $json['is_near_full_moon'];
+                        $next_full_moon    = new \DateTime((string)($json['next_full_moon']['date']));
+
+                        // Add whether or not full moon levels are available or visible or not
+                        $description = 'Full moon levels: ';
+                        if ($is_full_moon){
+                            $description .= '**AVAILABLE**';
+                        } else if ($is_near_full_moon) {
+                            $description .= 'Visible';
+                        } else {
+                            $description .= '_Not available_';
+                        }
+                        
+                        // Add next full moon
+                        if(!$is_full_moon){
+                            $description .= PHP_EOL;
+                            $description .= "Next Full Moon: <t:{$next_full_moon->getTimestamp()}:R>";
+                        }
+                        
+                        // Add phase
+                        $description .= PHP_EOL;
+                        $description .= "Phase: `{$phase}`";
+
+                        echo $image;
+
+                        // Create embed for the alpha patch
+                        $embed = new Embed($discord, [
+                            'title'       => $title,
+                            'description' => $description,
+                            'timestamp'   => (new \DateTime())->format('Y-m-d H:i'),
+                            'color'       => 16777215,
+                            'thumbnail'   => ['url' => $image],
+                        ]);
+
+                        // Send the embed as a message to the user
+                        $message->channel->sendEmbed($embed);
+                });
+
+            return;
+
+        }
+
         // Random campaign
         if($message->content === '!randomcampaign'){
 
