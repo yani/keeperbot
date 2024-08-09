@@ -39,6 +39,7 @@ return [
     '!dkrap'           => 'https://www.youtube.com/watch?v=vH67duada9E',
     '!germanrap'       => 'https://www.youtube.com/watch?v=xXkfyGQsjAk',
     '!kiss'            => '_**\*smooch\***_ :kiss:',
+    '!smooch'          => '_**\*smooch\***_ :kiss:',
 
     // Bugs
     '!lvl10spellbug'   => "> **Level 10 spell bug:** once a creature reaches level 10, creature spells such as Speed and Armour no longer work for its entire duration. Because of this, creatures who get these before level 10 become much weaker overall (e.g. level 9 Samurai are much more dangerous than level 10 ones). This happens because these spells are cast at the creature's experience level but spells only have 9 levels. The game looks for the level 10 value but ends up reading the next entry in the data (possibly the level 1 entry for the next spell). This affects many spells, but is particularly noticeable with Speed. Fixed in KeeperFX.",
