@@ -1,0 +1,82 @@
+▄ •▄ ▄▄▄ .▄▄▄ . ▄▄▄·▄▄▄ .▄▄▄  ▄▄▄▄·      ▄▄▄▄▄
+█▌▄▌▪▀▄.▀·▀▄.▀·▐█ ▄█▀▄.▀·▀▄ █·▐█ ▀█▪▪    •██  
+▐▀▀▄·▐▀▀▪▄▐▀▀▪▄ ██▀·▐▀▀▪▄▐▀▀▄ ▐█▀▀█▄ ▄█▀▄ ▐█.▪
+▐█.█▌▐█▄▄▌▐█▄▄▌▐█▪·•▐█▄▄▌▐█•█▌██▄▪▐█▐█▌.▐▌▐█▌·
+·▀  ▀ ▀▀▀  ▀▀▀ .▀    ▀▀▀ .▀  ▀·▀▀▀▀  ▀█▄▀▪▀▀▀ 
+<--------------------------------- DISCORD-MESSAGE-SPLIT --------------------------------->
+
+
+General:
+
+    !keeperbot           Send yourself a DM with information about KeeperBot
+
+    !keeperklan          [Link] Keeper Klan forums
+    !lubiki              [Link] Lubiki homepage
+    !megathread          [Link] Megathread on Reddit
+    !fandom              [Link] Fandom Dungeon Keeper wiki
+
+<--------------------------------- DISCORD-MESSAGE-SPLIT --------------------------------->
+
+KeeperFX:
+
+    !keeperfx            [Link] KeeperFX website
+    !controls            [Link] KeeperFX controls
+    !palette, !palettes  [Link] Palettes used by DK1 (KFX)
+    !music               [Link] Background .ogg music files
+    !wiki                [Link] Provides a link to the KeeperFX wiki
+
+    !moon, !moonphase    Shows info about the KeeperFX moon phase
+    
+KeeperFX Workshop:
+
+    !workshop <search>   Search the KeeperFX workshop for a specific term
+
+    !workshop            [Link] KeeperFX workshop
+    !unearth             [Link] Unearth (KFX Workshop)
+    !implauncher         [Link] ImpLauncher (KFX Workshop)
+
+    !randommap           Get a random map from the KeeperFX workshop
+    !randomcampaign      Get a random campaign from the KeeperFX workshop
+
+    !mapnumber <number>  Check if a specific map number is available on the KeeperFX workshop
+
+KeeperFX Builds:
+
+    !alpha <build>       Get a link to the alpha patch with this specific build number
+    !alpha               Get the latest KeeperFX alpha patch
+    !stable              Get the latest KeeperFX stable version
+    !prototype <run_id>  Get or wait on a prototype to share (only 1 wait loop possible)
+
+KeeperFX Development:
+
+    !kfxrepo             [Link] KeeperFX GitHub repo
+    !buildkfx            [Link] How to start building the KeeperFX code base
+
+<--------------------------------- DISCORD-MESSAGE-SPLIT --------------------------------->
+
+Dungeon Keeper 1:
+
+    !lvl10spellbug       Explains what the Level 10 spell bug does (DK1)
+    !overflowbug         Explains what the Overflow bug does (DK1)
+
+Dungeon Keeper 2:
+
+    !openkeeper          [Link] OpenKeeper GitHub repo (DK2)
+    !gim                 [Link] General Improvement Mod (DK2)
+    !ember               [Link] Ember GitHub repo (DK2)
+
+Other Games:
+
+    !lon                 [Link] Lords of Nether
+
+Fun / Memes:
+
+    !slap <person>       Slap a person
+    !roll                Roll a number between 1 and 100
+    !roll <max>          Roll a number between 1 and the given max number
+  
+    !rap, !dkrap         [Link] Dungeon Keeper rap video
+    !germanrap           [Link] German Dungeon Keeper rap video
+    
+    !walter              The French war cry
+    !kiss, !smooch       *Smooch*

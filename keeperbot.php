@@ -21,7 +21,6 @@ $dotenv->load(__DIR__ . '/.env');
 
 // Load commands
 $commands     = include __DIR__ . '/commands.php';
-$command_info = include __DIR__ . '/commands.info.php';
 
 if(!isset($_ENV['DISCORD_BOT_TOKEN']) || empty($_ENV['DISCORD_BOT_TOKEN'])){
     die('Invalid Discord bot token');
@@ -35,11 +34,11 @@ $discord = new Discord([
 ]);
 
 // Handle discord ready event (after connected and ready)
-$discord->on('ready', function (Discord $discord) use ($commands, $command_info) {
+$discord->on('ready', function (Discord $discord) use ($commands) {
     echo "Bot is ready!", PHP_EOL;
 
     // Listen for messages.
-    $discord->on(Event::MESSAGE_CREATE, function (Message $message, Discord $discord) use ($commands, $command_info) {
+    $discord->on(Event::MESSAGE_CREATE, function (Message $message, Discord $discord) use ($commands) {
 
         echo "{$message->author->username}: {$message->content}", PHP_EOL;
 
@@ -67,48 +66,23 @@ $discord->on('ready', function (Discord $discord) use ($commands, $command_info)
         // Help command
         if($message->content === '!keeperbot' || $message->content === '!keeperfxbot'){
 
-            // Create command list
-            $command_strings = \array_merge(\array_keys($commands),[
-                // Dynamic commands
-                '!keeperbot',
-                '!workshop <search_term>',
-                '!slap <person>',
-                '!roll',
-                '!roll <max>',
-                '!randommap',
-                '!randomcampaign',
-                '!prototype <run_id>',
-            ]);
-            sort($command_strings);
-
-            // Get longest command char count
-            $command_char_count_max = 0;
-            foreach($command_strings as $string){
-                if(\strlen($string) > $command_char_count_max){
-                    $command_char_count_max = \strlen($string);
-                }
-            }
-
-            // Create text string
-            $text = "Hello there Keeper!\n\nCommands:```\n";
-
-            foreach($command_strings as $command_string)
-            {
-                if(isset($command_info[$command_string])){
-                    $text .= \str_pad($command_string, $command_char_count_max +3) . $command_info[$command_string];
-                } else {
-                    $text .= $command_string;
-                }
-                $text .= "\n";
-            }
-
-            $text .= '```';
+            // Get the message parts
+            $split_line = "<--------------------------------- DISCORD-MESSAGE-SPLIT --------------------------------->";
+            $message_strings = \explode($split_line, \file_get_contents(__DIR__ . '/info-message.txt'));
 
             // React on the message so other people know its handled
             $message->react("👍");
 
-            // Send DM
-            $message->author->sendMessage(MessageBuilder::new()->setContent($text));
+            // Send DMs
+            foreach($message_strings as $string)
+            {
+                $text = '```' . PHP_EOL;
+                $text .= $string . PHP_EOL;
+                $text .= '```';
+
+                $message->author->sendMessage(MessageBuilder::new()->setContent($text));
+            }
+
             return;
         }
 
