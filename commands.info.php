@@ -39,6 +39,7 @@ return [
     '!walter'          => 'Print the French war cry',
     '!rap, !dkrap'     => '[Link] Dungeon Keeper rap video',
     '!germanrap'       => '[Link] German Dungeon Keeper rap video',
+    '!kiss'            => '*Smooch*',
 
     // Bugs
     '!lvl10spellbug'   => 'Explains what the Level 10 spell bug does (DK1)',
