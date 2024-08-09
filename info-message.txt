@@ -65,6 +65,11 @@ Dungeon Keeper 2:
     !gim                 [Link] General Improvement Mod (DK2)
     !ember               [Link] Ember GitHub repo (DK2)
 
+Speedrunning:
+
+    !records <game>      Get the top 5 speedrun records for DK1 or DK2
+    !speedrun <game>     Same as !records <game>
+
 Other Games:
 
     !lon                 [Link] Lords of Nether
