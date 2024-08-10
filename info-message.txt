@@ -14,6 +14,8 @@ General:
     !lubiki              [Link] Lubiki homepage
     !megathread          [Link] Megathread on Reddit
     !fandom              [Link] Fandom Dungeon Keeper wiki
+    !reddit              [Link] Dungeon Keeper subreddit
+    !lemmy               [Link] Dungeon Keeper Lemmy community
 
 <--------------------------------- DISCORD-MESSAGE-SPLIT --------------------------------->
 

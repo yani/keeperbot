@@ -13,6 +13,8 @@ return [
     '!megathread'      => 'https://www.reddit.com/r/dungeonkeeper/comments/1319ns5/dungeon_keeper_megathread/',
     '!fandom'          => 'https://dungeonkeeper.fandom.com/wiki/Dungeon_Keeper_Wiki',
     '!lon'             => 'https://lordsofnether.com',
+    '!reddit'          => 'https://www.reddit.com/r/dungeonkeeper/',
+    '!lemmy'           => 'https://lemmy.world/c/dungeonkeeper',
 
     // DK1 / KFX
     '!keeperfx'        => 'https://keeperfx.net',
