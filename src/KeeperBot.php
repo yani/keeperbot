@@ -51,7 +51,7 @@ class KeeperBot
 
         // Simple text commands
         foreach($this->simple_commands as $simple_command_name => $text){
-            if(\trim($message->content) === $simple_command_name){
+            if($full_command === $simple_command_name){
                 $message->reply($text);
                 return;
             }
