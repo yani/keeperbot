@@ -76,7 +76,7 @@ Other Games:
 
     !lon                 [Link] Lords of Nether
 
-Fun / Memes:
+Fun / Memes / Other:
 
     !slap <person>       Slap a person
     !roll                Roll a number between 1 and 100
@@ -87,3 +87,8 @@ Fun / Memes:
     
     !walter              The French war cry
     !kiss, !smooch       *Smooch*
+
+    !define <word>       Look up a definition for a word
+    !definition <word>   Same as !define
+
+    
