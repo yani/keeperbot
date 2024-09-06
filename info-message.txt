@@ -58,6 +58,7 @@ KeeperFX Development:
 
 Dungeon Keeper 1:
 
+    !vscode              [Link] Gives a link to VSCode and to the DK Scripting Assistant
     !lvl10spellbug       Explains what the Level 10 spell bug does (DK1)
     !overflowbug         Explains what the Overflow bug does (DK1)
 
