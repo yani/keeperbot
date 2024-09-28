@@ -33,6 +33,9 @@ return [
     'history'         => 'https://keeperfx.net/history',
     'ami'             => 'https://forums.sufficientvelocity.com/threads/dungeon-keeper-ami-sailor-moon-dungeon-keeper-story-only-thread.30066/',
     'novel'           => 'https://forums.sufficientvelocity.com/threads/dungeon-keeper-ami-sailor-moon-dungeon-keeper-story-only-thread.30066/',
+    'sfx'             => 'https://github.com/dkfans/FXsounds',
+    'gfx'             => 'https://github.com/dkfans/FXGraphics',
+    'fxinfo'          => 'https://github.com/dkfans/FXInfo/wiki',
 
     // DK2
     'openkeeper'      => 'https://github.com/tonihele/OpenKeeper',

@@ -54,6 +54,9 @@ KeeperFX Development:
 
     !kfxrepo             [Link] KeeperFX GitHub repo
     !buildkfx            [Link] How to start building the KeeperFX code base
+    !sfx                 [Link] KeeperFX FXsounds repo
+    !gfx                 [Link] KeeperFX FXGraphics repo 
+    !fxinfo              [Link] KeeperFX FXInfo repo wiki
 
 <--------------------------------- DISCORD-MESSAGE-SPLIT --------------------------------->
 
