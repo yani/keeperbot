@@ -26,6 +26,7 @@ KeeperFX:
     !palette, !palettes  [Link] Palettes used by DK1 (KFX)
     !music               [Link] Background .ogg music files
     !wiki                [Link] Provides a link to the KeeperFX wiki
+    !history             [Link] KeeperFX history
 
     !moon, !moonphase    Shows info about the KeeperFX moon phase
     
@@ -62,11 +63,14 @@ Dungeon Keeper 1:
     !lvl10spellbug       Explains what the Level 10 spell bug does (DK1)
     !overflowbug         Explains what the Overflow bug does (DK1)
 
+    !novel, !ami         [Link] Dungeon Keeper Ami (Novel) by Pusakuronu
+
 Dungeon Keeper 2:
 
     !openkeeper          [Link] OpenKeeper GitHub repo (DK2)
     !gim                 [Link] General Improvement Mod (DK2)
     !ember               [Link] Ember GitHub repo (DK2)
+    !flame               [Link] Flame GitHub repo (D2)
 
 Speedrunning:
 
