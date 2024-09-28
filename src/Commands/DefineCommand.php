@@ -91,7 +91,6 @@ class DefineCommand implements CommandInterface
                 $embed = new Embed($discord, [
                     'title'       => $json[0]['word'] ?? $parameter_string,
                     'description' => $description,
-                    'timestamp'   => (new \DateTime())->format('Y-m-d H:i'),
                     'color'       => 16777215,
                 ]);
 
