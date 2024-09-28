@@ -29,6 +29,8 @@ KeeperFX:
     !history             [Link] KeeperFX history
 
     !moon, !moonphase    Shows info about the KeeperFX moon phase
+
+    !commands, !script   [Link] A link to the map commands
     
 KeeperFX Workshop:
 

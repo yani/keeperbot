@@ -36,6 +36,8 @@ return [
     'sfx'             => 'https://github.com/dkfans/FXsounds',
     'gfx'             => 'https://github.com/dkfans/FXGraphics',
     'fxinfo'          => 'https://github.com/dkfans/FXInfo/wiki',
+    'commands'        => 'https://keeperfx.net/wiki/level-script-commands',
+    'script'          => 'https://keeperfx.net/wiki/level-script-commands',
 
     // DK2
     'openkeeper'      => 'https://github.com/tonihele/OpenKeeper',
