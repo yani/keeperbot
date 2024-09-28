@@ -37,6 +37,13 @@ class KeeperBot
             return;
         }
 
+        // Funny reply to this comment
+        if($message->content == "bad bot")
+        {
+            $message->reply("https://tenor.com/view/robot-attack-saturday-night-live-help-me-evil-robot-attacking-robot-gif-18069713");
+                return;
+        }
+
         // Make sure command starts with the command prefix
         if(self::COMMAND_CHAR !== \substr($message->content, 0, 1))
         {
