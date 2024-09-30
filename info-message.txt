@@ -27,10 +27,13 @@ KeeperFX:
     !music               [Link] Background .ogg music files
     !wiki                [Link] Provides a link to the KeeperFX wiki
     !history             [Link] KeeperFX history
+    !commands, !script   [Link] A link to the map commands
 
     !moon, !moonphase    Shows info about the KeeperFX moon phase
 
-    !commands, !script   [Link] A link to the map commands
+    !packetsave,         Shows info about the packetsaves
+    !packetload,
+    !packets         
     
 KeeperFX Workshop:
 
