@@ -16,7 +16,7 @@ class SpeedrunRecordsCommand implements CommandInterface
     public function getCommandConfig(): array
     {
         return [
-            'command'        => ['speedrun', 'records'],
+            'command'        => ['speedrun', 'records', 'record'],
             'has_parameters' => true,
         ];
     }
