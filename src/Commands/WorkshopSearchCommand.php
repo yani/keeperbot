@@ -17,7 +17,7 @@ class WorkshopSearchCommand implements CommandInterface
     public function getCommandConfig(): array
     {
         return [
-            'command'        => 'workshop',
+            'command'        => ['workshop', 'ws', 'w'],
             'has_parameters' => true,
         ];
     }
