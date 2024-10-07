@@ -90,8 +90,6 @@ class MoonPhaseCommand implements CommandInterface
                 $description .= PHP_EOL . PHP_EOL;
                 $description .= "Phase: `{$phase}`";
 
-                echo $image;
-
                 // Create embed for the alpha patch
                 $embed = new Embed($discord, [
                     'title'       => $title,
