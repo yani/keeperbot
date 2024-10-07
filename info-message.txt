@@ -37,7 +37,9 @@ KeeperFX:
     
 KeeperFX Workshop:
 
-    !workshop <search>   Search the KeeperFX workshop for a specific term
+    !workshop <search>,  Search the KeeperFX workshop for a specific term
+    !w <search>,
+    !ws <search>
 
     !workshop            [Link] KeeperFX workshop
     !unearth             [Link] Unearth (KFX Workshop)
@@ -82,8 +84,9 @@ Dungeon Keeper 2:
 
 Speedrunning:
 
-    !records <game>      Get the top 5 speedrun records for DK1 or DK2
-    !speedrun <game>     Same as !records <game>
+    !records <game>,     Get the top 5 speedrun records for DK1 or DK2
+    !record <game>,
+    !speedrun <game>
 
 Other Games:
 
@@ -101,7 +104,7 @@ Fun / Memes / Other:
     !walter              The French war cry
     !kiss, !smooch       *Smooch*
 
-    !define <word>       Look up a definition for a word
-    !definition <word>   Same as !define
+    !define <word>,      Look up a definition for a word
+    !definition <word>
 
     
