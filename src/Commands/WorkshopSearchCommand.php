@@ -97,8 +97,12 @@ class WorkshopSearchCommand implements CommandInterface
                     }
 
                     $description .= PHP_EOL . PHP_EOL;
-                    $description .= ':star: **Rating:** ' . ($item['ratingScore'] ?? '-') . ' / 5' . PHP_EOL;
-                    $description .= ':dart: **Difficulty:** ' . ($item['difficultyRatingScore'] ?? '-') . ' / 5';
+                    if($item['ratingScore'] !== null){
+                        $description .= ':star: **Rating:** ' . $item['ratingScore'] . ' / 5' . PHP_EOL;
+                    }
+                    if($item['difficultyRatingScore'] !== null){
+                        $description .= ':dart: **Difficulty:** ' . $item['difficultyRatingScore'] . ' / 5';
+                    }
                 }
 
                 // Get timestamp
