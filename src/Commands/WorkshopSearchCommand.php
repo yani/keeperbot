@@ -3,6 +3,7 @@
 namespace Yani\KeeperBot\Commands;
 
 use Discord\Discord;
+use Discord\Parts\Embed\Embed;
 use Discord\Parts\Channel\Message;
 use Discord\Builders\MessageBuilder;
 
@@ -27,7 +28,7 @@ class WorkshopSearchCommand implements CommandInterface
 
         $search_term = Utility::combineParameters($parameters);
 
-        $browser->get($_ENV['KEEPERFX_URL'] . '/api/v1/workshop/search?q=' . \urlencode($search_term))->then(function (ResponseInterface $response) use ($message, $search_term) {
+        $browser->get($_ENV['KEEPERFX_URL'] . '/api/v1/workshop/search?q=' . \urlencode($search_term))->then(function (ResponseInterface $response) use ($message, $search_term, $discord) {
 
             $body = (string)$response->getBody();
 
@@ -79,8 +80,72 @@ class WorkshopSearchCommand implements CommandInterface
             }
 
             if($workshop_items_count == 1){
-                $url = $_ENV['KEEPERFX_URL'] . '/workshop/item/' . $workshop_items[0]['id'];
-                $message->reply($url);
+
+                // Get the item
+                $item = $workshop_items[0];
+
+                // Get the url
+                $url = $_ENV['KEEPERFX_URL'] . '/workshop/item/' . $item['id'];
+
+                // Get description
+                $description = null;
+                if(\is_string($item['description']) && \strlen($item['description']) > 0){
+                    if(\strlen($item['description']) > 250){
+                        $description = \substr($item['description'], 0, 247) . '...';
+                    } else {
+                        $description = $item['description'];
+                    }
+
+                    $description .= PHP_EOL . PHP_EOL;
+                    $description .= ':star: **Rating:** ' . ($item['ratingScore'] ?? '-') . ' / 5' . PHP_EOL;
+                    $description .= ':dart: **Difficulty:** ' . ($item['difficultyRatingScore'] ?? '-') . ' / 5';
+                }
+
+                // Get timestamp
+                $timestamp = new \DateTime($item['createdTimestamp']['date']);
+                if(!\is_null($item['originalCreationDate'])){
+                    $timestamp = new \DateTime($item['originalCreationDate']['date']);
+                }
+
+                // Get author
+                $author = null;
+                $author_url = null;
+                $author_avatar_url = null;
+                if($item['originalAuthor'] !== null){
+                    $author = $item['originalAuthor'];
+                } else if($item['submitter'] !== null){
+                    $author = $item['submitter']['username'];
+                    $author_url = $_ENV['KEEPERFX_URL'] . '/workshop/user/' . $author;
+                    if($item['submitter']['avatarSmall'] !== null){
+                        $author_avatar_url = $_ENV['KEEPERFX_URL'] . '/avatar/' . $item['submitter']['avatarSmall'];
+                    }
+                } else {
+                    $author = 'KeeperFX Team';
+                }
+
+                // Get author object
+                $author_obj = ['name' => $author];
+                if($author_url){
+                    $author_obj['url'] = $author_url;
+                }
+                if($author_avatar_url){
+                    $author_obj['icon_url'] = $author_avatar_url;
+                }
+
+                // Create embed for the alpha patch
+                $embed = new Embed($discord, [
+                    'title'       => $item['name'],
+                    'description' => $description,
+                    'author'      => $author_obj,
+                    'timestamp'   => $timestamp->format('Y-m-d H:i'),
+                    //'color'       => 16777215,
+                    'thumbnail'   => ['url' => $_ENV['KEEPERFX_URL'] . '/workshop/image/' . $item['id'] . '/' . $item['thumbnail']],
+                    'url'         => $url,
+                    'footer' => ['text' => 'KeeperFX Workshop'],
+                ]);
+
+                // Send the embed as a message to the channel
+                $message->channel->sendEmbed($embed);
                 return;
             }
 
