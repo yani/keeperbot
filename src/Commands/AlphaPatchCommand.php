@@ -23,6 +23,6 @@ class AlphaPatchCommand implements CommandInterface
     {
         $alpha_patch_number = (int) $parameters[0];
 
-        $message->reply("A fix for this can be found in [Alpha {$alpha_patch_number}](https://keeperfx.net/download/alpha/keeperfx-1_1_0_{$alpha_patch_number}_Alpha-patch.7z). See here: https://keeperfx.net/downloads/alpha");
+        $message->reply("A fix for this can be found in [Alpha {$alpha_patch_number}](https://keeperfx.net/download/alpha/keeperfx-1_2_0_{$alpha_patch_number}_Alpha-patch.7z). See here: https://keeperfx.net/downloads/alpha");
     }
 }
