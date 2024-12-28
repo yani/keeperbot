@@ -41,7 +41,13 @@ class KeeperBot
         if($message->content == "bad bot")
         {
             $message->reply("https://tenor.com/view/robot-attack-saturday-night-live-help-me-evil-robot-attacking-robot-gif-18069713");
-                return;
+            return;
+        }
+
+        if($message->content === "good bot")
+        {
+            $message->reply("Thanks");
+            return;
         }
 
         // Make sure command starts with the command prefix
