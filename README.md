@@ -46,6 +46,13 @@ Restart=always
 service keeperbot start
 ```
 
+### Docker build
+
+```
+docker built -t yanikore/keeperbot .
+docker push yanikore/keeperbot
+```
+
 ### License
 
 MIT
