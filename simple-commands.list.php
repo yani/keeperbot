@@ -27,7 +27,7 @@ return [
     'controls'        => 'https://keeperfx.net/wiki/new-game-controls-and-commands',
     'palette'         => 'https://github.com/dkfans/FXInfo/wiki/Palettes',
     'palettes'        => 'https://github.com/dkfans/FXInfo/wiki/Palettes',
-    'music'           => 'https://keeperfx.local/workshop/item/393/keeperfx-music',
+    'music'           => 'https://keeperfx.net/workshop/item/393/keeperfx-music',
     'wiki'            => 'https://github.com/dkfans/keeperfx/wiki',
     'vscode'          => 'You can download VSCode at <https://code.visualstudio.com/>' . PHP_EOL . 'You can find the Dungeon Keeper Scripting Assistant here: <https://marketplace.visualstudio.com/items?itemName=kxvv.vscode-dk-scripting-assist>',
     'history'         => 'https://keeperfx.net/history',
