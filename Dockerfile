@@ -15,8 +15,8 @@ COPY . /var/keeperbot
 # Change working directory
 WORKDIR /var/keeperbot
 
-# Ensure .env file exists, if not, copy .env.example
-RUN [ ! -f .env ] && cp .env.example .env || true
+# Setup default .env file
+RUN cp .env.example .env
 
 # Install dependencies
 RUN composer install --no-dev --optimize-autoloader
