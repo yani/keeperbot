@@ -46,6 +46,16 @@ Restart=always
 service keeperbot start
 ```
 
+### Docker image
+
+```
+docker run -d \
+    --name keeperbot \
+    --restart unless-stopped \
+    -e DISCORD_BOT_TOKEN=XXXXXX \
+    yanikore/keeperbot
+```
+
 ### Docker build
 
 ```
