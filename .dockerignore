@@ -1,0 +1,6 @@
+# Local environment
+.env
+
+# git files
+.git
+.gitignore
