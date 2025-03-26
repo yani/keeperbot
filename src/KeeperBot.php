@@ -5,6 +5,7 @@ namespace Yani\KeeperBot;
 use Discord\Discord;
 use Discord\Parts\Channel\Channel;
 use Discord\Parts\Channel\Message;
+use Discord\Builders\MessageBuilder;
 
 class KeeperBot
 {
@@ -40,7 +41,9 @@ class KeeperBot
         // Funny reply to this comment
         if($message->content == "bad bot")
         {
-            $message->reply("https://tenor.com/view/robot-attack-saturday-night-live-help-me-evil-robot-attacking-robot-gif-18069713");
+            $message->reply(
+                MessageBuilder::new()->addFile(__DIR__ . '/../files/robot-attack.gif')
+            );
             return;
         }
 
