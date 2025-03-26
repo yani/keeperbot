@@ -128,7 +128,7 @@ class WorkshopSearchCommand implements CommandInterface
                 }
 
                 // Get author object
-                $author_obj = ['name' => $author];
+                $author_obj = ['name' => \htmlentities($author)];
                 if($author_url){
                     $author_obj['url'] = $author_url;
                 }
@@ -138,8 +138,8 @@ class WorkshopSearchCommand implements CommandInterface
 
                 // Create embed for the alpha patch
                 $embed = new Embed($discord, [
-                    'title'       => $item['name'],
-                    'description' => $description,
+                    'title'       => \htmlentities($item['name']),
+                    'description' => \htmlentities($description),
                     'author'      => $author_obj,
                     'timestamp'   => $timestamp->format('Y-m-d H:i'),
                     //'color'       => 16777215,
