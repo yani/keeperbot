@@ -12,7 +12,7 @@ class XGHearthCommand implements CommandInterface
     public function getCommandConfig(): array
     {
         return [
-            'command'        => ['xgh', 'xghearth'],
+            'command'        => ['xgh', 'xghearth', 'xgheart'],
             'has_parameters' => false,
         ];
     }
