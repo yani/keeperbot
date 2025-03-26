@@ -59,7 +59,7 @@ docker run -d \
 ### Docker build
 
 ```
-docker built -t yanikore/keeperbot .
+docker build -t yanikore/keeperbot .
 docker push yanikore/keeperbot
 ```
 
