@@ -73,14 +73,12 @@ Dungeon Keeper 1:
     !lvl10spellbug       Explains what the Level 10 spell bug does (DK1)
     !overflowbug         Explains what the Overflow bug does (DK1)
 
-    !novel, !ami         [Link] Dungeon Keeper Ami (Novel) by Pusakuronu
-
 Dungeon Keeper 2:
 
     !openkeeper          [Link] OpenKeeper GitHub repo (DK2)
     !gim                 [Link] General Improvement Mod (DK2)
     !ember               [Link] Ember GitHub repo (DK2)
-    !flame               [Link] Flame GitHub repo (D2)
+    !flame               [Link] Flame GitHub repo (DK2)
 
 Speedrunning:
 
@@ -95,16 +93,16 @@ Other Games:
 Fun / Memes / Other:
 
     !slap <person>       Slap a person
+
     !roll                Roll a number between 1 and 100
     !roll <max>          Roll a number between 1 and the given max number
-  
-    !rap, !dkrap         [Link] Dungeon Keeper rap video
-    !germanrap           [Link] German Dungeon Keeper rap video
-    
-    !walter              The French war cry
-    !kiss, !smooch       *Smooch*
 
     !define <word>,      Look up a definition for a word
     !definition <word>
-
+  
+    !rap, !dkrap         [Link] Dungeon Keeper rap video
+    !germanrap           [Link] German Dungeon Keeper rap video
+    !novel, !ami         [Link] Dungeon Keeper Ami (Novel) by Pusakuronu
     
+    !kiss, !smooch       *Smooch*
+    !hon, !honhon        The French war cry
