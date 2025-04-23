@@ -16,6 +16,14 @@
     "require": {
         "team-reflex/discord-php": "^7.3",
         "react/async": "^4.2",
-        "symfony/dotenv": "^7.0"
+        "symfony/dotenv": "^7.0",
+        "symfony/http-client": "^7.2",
+        "psr/http-client": "^1.0",
+        "p3k/timezone": "^0.1.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     }
 }

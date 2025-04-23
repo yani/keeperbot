@@ -90,6 +90,8 @@ Other Games:
 
     !lon                 [Link] Lords of Nether
 
+<--------------------------------- DISCORD-MESSAGE-SPLIT --------------------------------->
+
 Fun / Memes / Other:
 
     !slap <person>       Slap a person
@@ -102,6 +104,10 @@ Fun / Memes / Other:
 
     !define <word>,      Look up a definition for a word
     !definition <word>
+
+    !time <location>,    Look up what time it is at a location
+    !tz <location>,
+    !timezone <location>,
   
     !rap, !dkrap         [Link] Dungeon Keeper rap video
     !germanrap           [Link] German Dungeon Keeper rap video
