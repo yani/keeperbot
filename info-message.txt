@@ -97,6 +97,9 @@ Fun / Memes / Other:
     !roll                Roll a number between 1 and 100
     !roll <max>          Roll a number between 1 and the given max number
 
+    !wikipedia <term>,   Look up a Wikipedia article
+    !wp <term>
+
     !define <word>,      Look up a definition for a word
     !definition <word>
   
