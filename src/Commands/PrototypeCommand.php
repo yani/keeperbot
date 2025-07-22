@@ -26,18 +26,17 @@ class PrototypeCommand extends BackgroundCommand implements CommandInterface, Ba
 
     public function handleCommand(Discord $discord, Message $message, array $parameters = []): void
     {
-        
+
         $run_id = $parameters[0];
 
-        if(!\is_numeric($run_id)){
+        if (!\is_numeric($run_id)) {
             $message->reply("Invalid workflow run ID");
             return;
         }
-        
+
         $prototype = $this->getPrototype($run_id);
 
-        if($prototype)
-        {
+        if ($prototype) {
             // Return the prototype
             $rounded_size = \round($prototype['size_in_bytes'] / 1024 / 1024, 2);
             $message->channel->sendMessage(MessageBuilder::new()->setContent(
@@ -45,16 +44,22 @@ class PrototypeCommand extends BackgroundCommand implements CommandInterface, Ba
             ));
 
             return;
-        } 
-        
+        }
+
         // Tell the user the prototype will come
         $message->channel->sendMessage(MessageBuilder::new()->setContent(
             "Waiting for prototype **{$run_id}** to be ready..."
         ));
-        
+
         // Add the background task
         $this->addBackgroundTask(new BackgroundTask(
-            $discord, $message, [$run_id], $this, 60, 30, new \DateTime('now')
+            $discord,
+            $message,
+            [$run_id],
+            $this,
+            60,
+            30,
+            new \DateTime('now')
         ));
     }
 
@@ -65,6 +70,11 @@ class PrototypeCommand extends BackgroundCommand implements CommandInterface, Ba
 
         $response = await($promise);
 
+        // Make sure response is not NULL
+        if (\is_null($response)) {
+            return false;
+        }
+
         // Handle non-200 response
         if ($response->getStatusCode() !== 200) {
             return false;
@@ -72,12 +82,12 @@ class PrototypeCommand extends BackgroundCommand implements CommandInterface, Ba
 
         // Get the body
         $body = (string)$response->getBody();
-        if(empty($body)){
+        if (empty($body)) {
             return false;
         }
 
         $json = \json_decode($body, true);
-        if(empty($json) || !is_array($json) || !isset($json['prototype']) || !is_array($json['prototype'])){
+        if (empty($json) || !is_array($json) || !isset($json['prototype']) || !is_array($json['prototype'])) {
             return false;
         }
 
@@ -89,8 +99,7 @@ class PrototypeCommand extends BackgroundCommand implements CommandInterface, Ba
         $run_id = $parameters[0];
         $prototype = $this->getPrototype($run_id);
 
-        if($prototype)
-        {
+        if ($prototype) {
             // Return the prototype
             $rounded_size = \round($prototype['size_in_bytes'] / 1024 / 1024, 2);
             $message->channel->sendMessage(MessageBuilder::new()->setContent(
@@ -98,7 +107,7 @@ class PrototypeCommand extends BackgroundCommand implements CommandInterface, Ba
             ));
 
             return true;
-        } 
+        }
 
         return false;
     }
@@ -110,6 +119,4 @@ class PrototypeCommand extends BackgroundCommand implements CommandInterface, Ba
             "Prototype [{$run_id}]: Timed out..."
         ));
     }
-
-    
 }
