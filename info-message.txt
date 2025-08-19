@@ -96,6 +96,9 @@ Fun / Memes / Other:
 
     !slap <person>       Slap a person
 
+    !taunt               Do a random taunt
+    !taunt <person>      Taunt a person
+
     !roll                Roll a number between 1 and 100
     !roll <max>          Roll a number between 1 and the given max number
 
