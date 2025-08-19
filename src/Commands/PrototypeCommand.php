@@ -65,29 +65,35 @@ class PrototypeCommand extends BackgroundCommand implements CommandInterface, Ba
 
     private function getPrototype($run_id): array|false
     {
-        $browser = Utility::createBrowserInstance();
-        $promise = $browser->get($_ENV['KEEPERFX_URL'] . '/api/v1/prototype/run/' . $run_id);
+        try {
 
-        $response = await($promise);
+            $browser = Utility::createBrowserInstance();
+            $promise = $browser->get($_ENV['KEEPERFX_URL'] . '/api/v1/prototype/run/' . $run_id);
 
-        // Make sure response is not NULL
-        if (\is_null($response)) {
-            return false;
-        }
+            $response = await($promise);
 
-        // Handle non-200 response
-        if ($response->getStatusCode() !== 200) {
-            return false;
-        }
+            // Make sure response is not NULL
+            if (\is_null($response)) {
+                return false;
+            }
 
-        // Get the body
-        $body = (string)$response->getBody();
-        if (empty($body)) {
-            return false;
-        }
+            // Handle non-200 response
+            if ($response->getStatusCode() !== 200) {
+                return false;
+            }
 
-        $json = \json_decode($body, true);
-        if (empty($json) || !is_array($json) || !isset($json['prototype']) || !is_array($json['prototype'])) {
+            // Get the body
+            $body = (string)$response->getBody();
+            if (empty($body)) {
+                return false;
+            }
+
+            $json = \json_decode($body, true);
+            if (empty($json) || !is_array($json) || !isset($json['prototype']) || !is_array($json['prototype'])) {
+                return false;
+            }
+        } catch (\Exception $ex) {
+
             return false;
         }
 
