@@ -52,10 +52,12 @@ KeeperFX Workshop:
 
 KeeperFX Builds:
 
-    !alpha <build>       Get a link to the alpha patch with this specific build number
-    !alpha               Get the latest KeeperFX alpha patch
     !stable              Get the latest KeeperFX stable version
-    !prototype <run_id>  Get or wait on a prototype to share (only 1 wait loop possible)
+    !alpha               Get the latest KeeperFX alpha patch
+    !alpha <build>       Get a link to the alpha patch with this specific build number
+
+    !p <run_id>,         Get or wait on a prototype to share (only 1 wait loop possible)
+    !prototype <run_id>
 
 KeeperFX Development:
 

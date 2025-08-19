@@ -19,7 +19,7 @@ class PrototypeCommand extends BackgroundCommand implements CommandInterface, Ba
     public function getCommandConfig(): array
     {
         return [
-            'command'        => 'prototype',
+            'command'        => ['prototype', 'p'],
             'has_parameters' => true,
         ];
     }
