@@ -18,6 +18,7 @@ return [
 
     // DK1 / KFX
     'keeperfx'        => 'https://keeperfx.net',
+    'trailer'         => 'https://youtu.be/__Xawmgtgcw',
     'lubiki'          => 'https://lubiki.keeperklan.com/index.php',
     'unearth'         => 'https://keeperfx.net/workshop/item/1/unearth',
     'implauncher'     => 'https://keeperfx.net/workshop/item/410/implauncher-beta',
