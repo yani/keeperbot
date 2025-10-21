@@ -1,10 +1,11 @@
-▄ •▄ ▄▄▄ .▄▄▄ . ▄▄▄·▄▄▄ .▄▄▄  ▄▄▄▄·      ▄▄▄▄▄
-█▌▄▌▪▀▄.▀·▀▄.▀·▐█ ▄█▀▄.▀·▀▄ █·▐█ ▀█▪▪    •██  
-▐▀▀▄·▐▀▀▪▄▐▀▀▪▄ ██▀·▐▀▀▪▄▐▀▀▄ ▐█▀▀█▄ ▄█▀▄ ▐█.▪
-▐█.█▌▐█▄▄▌▐█▄▄▌▐█▪·•▐█▄▄▌▐█•█▌██▄▪▐█▐█▌.▐▌▐█▌·
-·▀  ▀ ▀▀▀  ▀▀▀ .▀    ▀▀▀ .▀  ▀·▀▀▀▀  ▀█▄▀▪▀▀▀ 
-<--------------------------------- DISCORD-MESSAGE-SPLIT --------------------------------->
 
+██╗  ██╗███████╗███████╗██████╗ ███████╗██████╗ ██████╗  ██████╗ ████████╗
+██║ ██╔╝██╔════╝██╔════╝██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔═══██╗╚══██╔══╝
+█████╔╝ █████╗  █████╗  ██████╔╝█████╗  ██████╔╝██████╔╝██║   ██║   ██║   
+██╔═██╗ ██╔══╝  ██╔══╝  ██╔═══╝ ██╔══╝  ██╔══██╗██╔══██╗██║   ██║   ██║   
+██║  ██╗███████╗███████╗██║     ███████╗██║  ██║██████╔╝╚██████╔╝   ██║   
+╚═╝  ╚═╝╚══════╝╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝╚═════╝  ╚═════╝    ╚═╝                                                                             
+<--------------------------------- DISCORD-MESSAGE-SPLIT --------------------------------->
 
 General:
 
@@ -17,8 +18,6 @@ General:
     !reddit              [Link] Dungeon Keeper subreddit
     !lemmy               [Link] Dungeon Keeper Lemmy community
 
-<--------------------------------- DISCORD-MESSAGE-SPLIT --------------------------------->
-
 KeeperFX:
 
     !keeperfx            [Link] KeeperFX website
@@ -28,13 +27,16 @@ KeeperFX:
     !wiki                [Link] Provides a link to the KeeperFX wiki
     !history             [Link] KeeperFX history
     !commands, !script   [Link] A link to the map commands
+    !trailer             [Link] The KeeperFX trailer on YouTube
 
     !moon, !moonphase    Shows info about the KeeperFX moon phase
 
     !packetsave,         Shows info about the packetsaves
     !packetload,
     !packets         
-    
+
+<--------------------------------- DISCORD-MESSAGE-SPLIT --------------------------------->
+
 KeeperFX Workshop:
 
     !workshop <search>,  Search the KeeperFX workshop for a specific term
