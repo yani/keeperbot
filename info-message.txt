@@ -120,5 +120,7 @@ Fun / Memes / Other:
     !germanrap           [Link] German Dungeon Keeper rap video
     !novel, !ami         [Link] Dungeon Keeper Ami (Novel) by Pusakuronu
     
+    !joke                Get a fresh joke straight from the top of the shelve
+
     !kiss, !smooch       *Smooch*
     !hon, !honhon        The French war cry
