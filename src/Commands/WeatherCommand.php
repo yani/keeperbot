@@ -41,7 +41,7 @@ class WeatherCommand implements CommandInterface
         $browser->get($url)->then(function (ResponseInterface $response) use ($message) {
             $json = json_decode((string)$response->getBody(), true);
 
-            if (!$json || $json['cod'] != 200) {
+            if (!$json || !isset($json['cod']) || $json['cod'] != 200) {
                 $message->reply("Could not fetch weather for that location.");
                 return;
             }
