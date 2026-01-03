@@ -115,6 +115,8 @@ Fun / Memes / Other:
     !time <location>,    Look up what time it is at a location
     !tz <location>,
     !timezone <location>,
+
+    !weather <location>  Look up the weather information for a location
   
     !rap, !dkrap         [Link] Dungeon Keeper rap video
     !germanrap           [Link] German Dungeon Keeper rap video
