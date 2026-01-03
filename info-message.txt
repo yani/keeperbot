@@ -125,3 +125,6 @@ Fun / Memes / Other:
 
     !kiss, !smooch       *Smooch*
     !hon, !honhon        The French war cry
+
+    !distro,             Link the Distrochooser website
+    !distrochooser
