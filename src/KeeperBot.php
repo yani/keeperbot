@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Yani\KeeperBot;
 
@@ -33,29 +33,25 @@ class KeeperBot
         }
 
         // Make sure this message is long enough to be a command
-        if(\strlen($message->content) < 2)
-        {
+        if (\strlen($message->content) < 2) {
             return;
         }
 
         // Funny reply to this comment
-        if($message->content == "bad bot")
-        {
+        if ($message->content == "bad bot") {
             $message->reply(
                 MessageBuilder::new()->addFile(__DIR__ . '/../files/robot-attack.gif')
             );
             return;
         }
 
-        if($message->content === "good bot")
-        {
+        if ($message->content === "good bot") {
             $message->reply("Thanks");
             return;
         }
 
         // Make sure command starts with the command prefix
-        if(self::COMMAND_CHAR !== \substr($message->content, 0, 1))
-        {
+        if (self::COMMAND_CHAR !== \substr($message->content, 0, 1)) {
             return;
         }
 
@@ -63,11 +59,16 @@ class KeeperBot
         $full_command = \substr($full_command, 1);
 
         $command_parts = $this->parseCommand($full_command);
-        $command_name = $command_parts[0];
+        $command_name = \array_shift($command_parts);
+
+        // Make sure a command is given
+        if ($command_name === null) {
+            return;
+        }
 
         // Simple text commands
-        foreach($this->simple_commands as $simple_command_name => $text){
-            if($full_command === $simple_command_name){
+        foreach ($this->simple_commands as $simple_command_name => $text) {
+            if ($full_command === $simple_command_name) {
                 $message->reply($text);
                 return;
             }
@@ -75,30 +76,25 @@ class KeeperBot
 
         // Dynamic commands
         /** @var CommandInterface $command */
-        foreach($this->commands as $command)
-        {
+        foreach ($this->commands as $command) {
             $command_found = false;
 
             $config = $command->getCommandConfig();
 
-            if(\is_string($config['command']) && $config['command'] === $command_name)
-            {
+            if (\is_string($config['command']) && $config['command'] === $command_name) {
                 $command_found = true;
             }
 
-            if(\is_array($config['command']) && \in_array($command_name, $config['command']))
-            {
+            if (\is_array($config['command']) && \in_array($command_name, $config['command'])) {
                 $command_found = true;
             }
 
-            if($command_found === true)
-            {
-                if(
+            if ($command_found === true) {
+                if (
                     !isset($config['has_parameters']) ||
-                    ($config['has_parameters'] === false && \count($command_parts) == 1) ||
-                    ($config['has_parameters'] === true && \count($command_parts) > 1)
-                ){
-                    \array_shift($command_parts);
+                    ($config['has_parameters'] === false && \count($command_parts) == 0) ||
+                    ($config['has_parameters'] === true && \count($command_parts) >= 1)
+                ) {
                     $command->handleCommand($discord, $message, $command_parts);
                     return;
                 }
@@ -108,7 +104,7 @@ class KeeperBot
         // Make sure this message was a command
         // People can write stuff like '!!!!!' which is not a command
         // We check at the end because some custom commands might not start with '!'
-        if(\preg_match('/\!([a-zA-Z])/', $message->content) !== 1){
+        if (\preg_match('/\!([a-zA-Z])/', $message->content) !== 1) {
             return;
         }
 
@@ -125,8 +121,7 @@ class KeeperBot
     {
         $command_filepaths = \glob(__DIR__ . '/Commands/*Command.php');
 
-        foreach($command_filepaths as $command_filepath)
-        {
+        foreach ($command_filepaths as $command_filepath) {
             // Get variables
             $command_filename        = \basename($command_filepath);
             $command_class_name      = \substr($command_filename, 0, -4);
@@ -136,7 +131,7 @@ class KeeperBot
             $command = new $command_full_class_name();
 
             // Check if this task uses the background tasks
-            if($command instanceof BackgroundCommandInterface) {
+            if ($command instanceof BackgroundCommandInterface) {
                 $command->setBackgroundTaskHandler($this->task_handler);
             }
 
@@ -145,12 +140,13 @@ class KeeperBot
         }
     }
 
-    private function parseCommand($command) {
+    private function parseCommand($command)
+    {
         // Use preg_match_all to extract all quoted strings or standalone words
         preg_match_all('/"(?:\\\\.|[^\\\\"])*"|\S+/', $command, $matches);
-    
+
         // Remove surrounding quotes from the matches
-        return array_map(function($match) {
+        return array_map(function ($match) {
             return trim($match, '"');
         }, $matches[0]);
     }
