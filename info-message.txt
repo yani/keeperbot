@@ -57,6 +57,7 @@ KeeperFX Builds:
     !stable              Get the latest KeeperFX stable version
     !alpha               Get the latest KeeperFX alpha patch
     !alpha <build>       Get a link to the alpha patch with this specific build number
+    !alphafix <build>    Same as !alpha <build> but also send a message saying this is a fix
 
     !p <run_id>,         Get or wait on a prototype to share (only 1 wait loop possible)
     !prototype <run_id>
