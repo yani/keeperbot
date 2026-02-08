@@ -104,7 +104,7 @@ class KeeperBot
         // Make sure this message was a command
         // People can write stuff like '!!!!!' which is not a command
         // We check at the end because some custom commands might not start with '!'
-        if (\preg_match('/\!([a-zA-Z])/', $message->content) !== 1) {
+        if (\preg_match('/\!([a-zA-Z0-9])/', $message->content) !== 1) {
             return;
         }
 
