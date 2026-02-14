@@ -113,6 +113,9 @@ Fun / Memes / Other:
     !define <word>,      Look up a definition for a word
     !definition <word>
 
+    !urban <term>,       Look up an Urban Dictionary definition
+    !ud <term>
+
     !time <location>,    Look up what time it is at a location
     !tz <location>,
     !timezone <location>,
