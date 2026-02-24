@@ -34,4 +34,14 @@ class Utility
             ])
         );
     }
+
+    public static function createSynchronousBrowserInstance(): \GuzzleHttp\Client
+    {
+        return new \GuzzleHttp\Client(
+            [
+                'verify'      => false,
+                'synchronous' => true,
+            ]
+        );
+    }
 }

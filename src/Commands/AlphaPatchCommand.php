@@ -2,8 +2,6 @@
 
 namespace Yani\KeeperBot\Commands;
 
-use function React\Async\await;
-
 use Discord\Discord;
 use Discord\Parts\Embed\Embed;
 use Discord\Parts\Channel\Message;
@@ -108,10 +106,8 @@ class AlphaPatchCommand extends BackgroundCommand implements CommandInterface, B
     {
         try {
 
-            $browser = Utility::createBrowserInstance();
-            $promise = $browser->get($this->getApiUrlFromParameters($parameters));
-
-            $response = await($promise);
+            $browser = Utility::createSynchronousBrowserInstance();
+            $response = $browser->get($this->getApiUrlFromParameters($parameters));
 
             // Make sure response is not NULL
             if (\is_null($response)) {

@@ -2,17 +2,16 @@
 
 namespace Yani\KeeperBot\Commands;
 
-use function React\Async\await;
-
 use Discord\Discord;
 use Discord\Parts\Channel\Message;
 use Discord\Builders\MessageBuilder;
-use Yani\KeeperBot\BackgroundTaskHandler;
-use Yani\KeeperBot\CommandInterface;
+
 use Yani\KeeperBot\Utility;
 use Yani\KeeperBot\BackgroundTask;
-use Yani\KeeperBot\BackgroundCommandInterface;
 use Yani\KeeperBot\BackgroundCommand;
+
+use Yani\KeeperBot\CommandInterface;
+use Yani\KeeperBot\BackgroundCommandInterface;
 
 class PrototypeCommand extends BackgroundCommand implements CommandInterface, BackgroundCommandInterface
 {
@@ -67,10 +66,8 @@ class PrototypeCommand extends BackgroundCommand implements CommandInterface, Ba
     {
         try {
 
-            $browser = Utility::createBrowserInstance();
-            $promise = $browser->get($_ENV['KEEPERFX_URL'] . '/api/v1/prototype/run/' . $run_id);
-
-            $response = await($promise);
+            $browser = Utility::createSynchronousBrowserInstance();
+            $response = $browser->get($_ENV['KEEPERFX_URL'] . '/api/v1/prototype/run/' . $run_id);
 
             // Make sure response is not NULL
             if (\is_null($response)) {
