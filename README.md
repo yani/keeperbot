@@ -23,7 +23,7 @@ composer install --no-dev
 3. Run the following command:
 
 ```
-php keeper-bot.php
+php keeperbot.php
 ```
 
 ### Systemd service
@@ -38,7 +38,7 @@ Description=KeeperBot (Discord bot)
 After=network.target
 
 [Service]
-ExecStart=php /home/yani/keeperbot/keeper-bot.php
+ExecStart=php /home/yani/keeperbot/keeperbot.php
 Restart=always
 ```
 
