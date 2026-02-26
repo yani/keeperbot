@@ -134,3 +134,5 @@ Fun / Memes / Other:
 
     !distro,             Link the Distrochooser website
     !distrochooser
+
+    !inspire             Get an InspiroBot quote
