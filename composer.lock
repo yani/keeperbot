@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5222c0a1e0373c524d1c7e27f805c64d",
+    "content-hash": "f142ffd0fa3487b2b97385bcc29ab8a8",
     "packages": [
         {
             "name": "carbonphp/carbon-doctrine-types",
@@ -3203,6 +3203,59 @@
                 "source": "https://github.com/nesQuick/ByteBuffer/tree/master"
             },
             "time": "2016-01-13T22:50:58+00:00"
+        },
+        {
+            "name": "xenokore/utility",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xenokore/xeno-utility.git",
+                "reference": "3eb486fd5ec306a6e4bd576f38b931349ac88a59"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xenokore/xeno-utility/zipball/3eb486fd5ec306a6e4bd576f38b931349ac88a59",
+                "reference": "3eb486fd5ec306a6e4bd576f38b931349ac88a59",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Xenokore\\Utility\\": "src/"
+                },
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yani B.",
+                    "email": "yani@xenokore.com",
+                    "homepage": "https://xenokore.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "General utility helpers",
+            "homepage": "https://xenokore.com",
+            "keywords": [
+                "helper",
+                "utility"
+            ],
+            "support": {
+                "issues": "https://github.com/xenokore/xeno-utility/issues",
+                "source": "https://github.com/xenokore/xeno-utility/tree/2.0.2"
+            },
+            "time": "2022-12-25T10:45:16+00:00"
         }
     ],
     "packages-dev": [],
