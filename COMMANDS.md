@@ -147,5 +147,5 @@
 
 | Command | Description |
 |----------|-------------|
-| `!shame | Send the bell of shame sound |
+| `!shame` | Send the bell of shame sound |
 | `!better`, `!bebetter` | Send the "you just need to be better" sound |
