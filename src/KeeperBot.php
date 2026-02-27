@@ -37,16 +37,23 @@ class KeeperBot
             return;
         }
 
-        // Funny reply to this comment
-        if ($message->content == "bad bot") {
+        // Funny reply
+        if ($message->content == "bad bot" || $message->content == "stupid bot" || $message->content == "fuck you bot") {
             $message->reply(
                 MessageBuilder::new()->addFile(__DIR__ . '/../files/robot-attack.gif')
             );
             return;
         }
 
+        // Funny reply
         if ($message->content === "good bot") {
             $message->reply("Thanks");
+            return;
+        }
+
+        // Funny reply
+        if ($message->content === "thanks bot") {
+            $message->reply("No problem");
             return;
         }
 
