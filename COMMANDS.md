@@ -140,3 +140,12 @@
 | `!hon`, `!honhon` | French war cry |
 | `!distro`, `!distrochooser` | Link to DistroChooser |
 | `!inspire` | Get an InspiroBot quote |
+
+---
+
+## Sounds
+
+| Command | Description |
+|----------|-------------|
+| `!shame | Send the bell of shame sound |
+| `!better`, `!bebetter` | Send the "you just need to be better" sound |
