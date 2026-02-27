@@ -15,7 +15,7 @@
 
 | Command | Description |
 |----------|-------------|
-| `!keeperbot` | Send yourself a DM with information about KeeperBot |
+| `!keeperbot` | Link to the KeeperBot command list |
 | `!keeperklan` | Link to Keeper Klan forums |
 | `!lubiki` | Link to Lubiki homepage |
 | `!megathread` | Link to Megathread on Reddit |
@@ -62,8 +62,8 @@
 |----------|-------------|
 | `!stable` | Get latest KeeperFX stable version |
 | `!alpha` | Get latest KeeperFX alpha patch |
-| `!alpha <build>` | Link to specific alpha build |
-| `!alphafix <build>` | Same as `!alpha <build>` + fix notice |
+| `!alpha <build>` | Get or wait on a specific alpha build |
+| `!alphafix <build>` | Same as `!alpha <build>` but also send a message that this is a fix |
 | `!p <run_id>`, `!prototype <run_id>` | Get or wait on a prototype |
 
 ---
@@ -84,7 +84,7 @@
 
 | Command | Description |
 |----------|-------------|
-| `!vscode` | Link to VSCode and DK Scripting Assistant |
+| `!vscode` | Link to DK Scripting Assistant for VSCode |
 | `!lvl10bug` | Explain Level 10 spell bug |
 | `!overflowbug` | Explain Overflow bug |
 
@@ -138,5 +138,5 @@
 | `!cat` | Get a cat |
 | `!kiss`, `!smooch` | *Smooch* |
 | `!hon`, `!honhon` | French war cry |
-| `!distro`, `!distrochooser` | Link to Distrochooser |
+| `!distro`, `!distrochooser` | Link to DistroChooser |
 | `!inspire` | Get an InspiroBot quote |

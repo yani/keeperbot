@@ -8,6 +8,9 @@
 
 return [
 
+    // KeeperBot
+    'keeperbot'       => 'KeeperBot commands: <https://github.com/yani/keeperbot/blob/master/COMMANDS.md>',
+
     // General
     'keeperklan'      => 'https://keeperklan.com',
     'megathread'      => 'https://www.reddit.com/r/dungeonkeeper/comments/1319ns5/dungeon_keeper_megathread/',
