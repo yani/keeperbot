@@ -17,7 +17,7 @@ class CatCommand implements CommandInterface
     public function getCommandConfig(): array
     {
         return [
-            'command'        => 'cat',
+            'command'        => ['cat', 'pussy'],
             'has_parameters' => false,
         ];
     }
