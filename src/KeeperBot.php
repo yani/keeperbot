@@ -39,8 +39,7 @@ class KeeperBot
 
         // Funny reply
         if ($message->content == "bad bot" || $message->content == "stupid bot" || $message->content == "fuck you bot") {
-            $message->reply(
-                MessageBuilder::new()->addFile(__DIR__ . '/../files/robot-attack.gif')
+            $message->reply("Sorry");
             );
             return;
         }
