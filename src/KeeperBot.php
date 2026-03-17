@@ -57,6 +57,12 @@ class KeeperBot
             return;
         }
 
+        // NG+ 'where transfer' reply
+        if (preg_match('~^where transfer(?:\s*\?+)?\s*?(🐒)*?$~iu', $message->content)) {
+            $message->reply("You wanna know where the transfer is in the **New Game Plus+** campaign? Say `!ng+ <level>` with the level and I'll explain it to you.");
+            return;
+        }
+
         // Make sure command starts with the command prefix
         if (self::COMMAND_CHAR !== \substr($message->content, 0, 1)) {
             return;
