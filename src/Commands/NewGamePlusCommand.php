@@ -98,65 +98,70 @@ class NewGamePlusCommand implements CommandInterface
                 $hashbang = $url_parts[1];
 
                 $browser = Utility::createBrowserInstance();
-                $browser->get($url)
-                    ->then(function (ResponseInterface $response) use ($message, $discord, $hashbang) {
+                $browser->get($url, [
+                    'User-Agent' => 'Mozilla/5.0 (X11; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0',
+                    'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                    'Accept-Language' => 'en-US,en;q=0.5',
+                    'Connection' => 'keep-alive',
+                    'Upgrade-Insecure-Requests' => '1',
+                ])->then(function (ResponseInterface $response) use ($message, $discord, $hashbang) {
 
-                        // Get body of response
-                        $body = (string)$response->getBody();
-                        if (empty($body)) {
-                            $message->reply("Failed to connect to Fandom wiki...");
-                            return;
-                        }
-
-                        // Handle non-200 response
-                        if ($response->getStatusCode() !== 200) {
-                            $message->reply("Failed to connect to Fandom wiki...");
-                            return;
-                        }
-
-                        // Get the page title
-                        preg_match('~\"mw\-page\-title\-main\"\>(.+?)\<\/span\>~', $body, $match);
-                        if (empty($match[1])) {
-                            $message->reply("Unable to find wiki page title...");
-                            return;
-                        }
-                        $title = $match[1];
-
-                        // Grab the new game plus information from the wiki page
-                        preg_match('~id="New_Game_Plus".*?</h[23]>(.*?)(?=<h[23]\b|$)~is', $body, $section);
-
-                        // Get paragraphs
-                        $paragraphs = [];
-                        if (!empty($section[1])) {
-                            preg_match_all('~<p\b[^>]*>(.*?)</p>~is', $section[1], $matches);
-                            $paragraphs = $matches[1];
-                        }
-
-                        // Make sure we found paragraphs
-                        if (count($paragraphs) === 0) {
-                            $message->reply("Unable to find New Game Plus information for this level...");
-                            return;
-                        }
-
-                        // Create output
-                        $output = "**New Game Plus+** information for **{$title}**:";
-                        foreach ($paragraphs as $i => $paragraph) {
-
-                            $text = \html_entity_decode($paragraph, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-                            $text = \strip_tags($text);
-                            $text = \preg_replace('/\s+/', ' ', $text);
-                            $text = \trim($text);
-
-                            $output .= "\n> " . $text;
-
-                            if ($i < (\count($paragraphs) - 1)) {
-                                $output .= "\n> ";
-                            }
-                        }
-
-                        $message->channel->sendMessage(MessageBuilder::new()->setContent($output));
+                    // Get body of response
+                    $body = (string)$response->getBody();
+                    if (empty($body)) {
+                        $message->reply("Failed to connect to Fandom wiki...");
                         return;
-                    });
+                    }
+
+                    // Handle non-200 response
+                    if ($response->getStatusCode() !== 200) {
+                        $message->reply("Failed to connect to Fandom wiki...");
+                        return;
+                    }
+
+                    // Get the page title
+                    preg_match('~\"mw\-page\-title\-main\"\>(.+?)\<\/span\>~', $body, $match);
+                    if (empty($match[1])) {
+                        $message->reply("Unable to find wiki page title...");
+                        return;
+                    }
+                    $title = $match[1];
+
+                    // Grab the new game plus information from the wiki page
+                    preg_match('~id="' . \escapeshellcmd($hashbang) . '".*?</h[23]>(.*?)(?=<h[23]\b|$)~is', $body, $section);
+
+                    // Get paragraphs
+                    $paragraphs = [];
+                    if (!empty($section[1])) {
+                        preg_match_all('~<p\b[^>]*>(.*?)</p>~is', $section[1], $matches);
+                        $paragraphs = $matches[1];
+                    }
+
+                    // Make sure we found paragraphs
+                    if (count($paragraphs) === 0) {
+                        $message->reply("Unable to find New Game Plus information for this level...");
+                        return;
+                    }
+
+                    // Create output
+                    $output = "**New Game Plus+** information for **{$title}**:";
+                    foreach ($paragraphs as $i => $paragraph) {
+
+                        $text = \html_entity_decode($paragraph, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                        $text = \strip_tags($text);
+                        $text = \preg_replace('/\s+/', ' ', $text);
+                        $text = \trim($text);
+
+                        $output .= "\n> " . $text;
+
+                        if ($i < (\count($paragraphs) - 1)) {
+                            $output .= "\n> ";
+                        }
+                    }
+
+                    $message->channel->sendMessage(MessageBuilder::new()->setContent($output));
+                    return;
+                });
 
                 return;
             }
