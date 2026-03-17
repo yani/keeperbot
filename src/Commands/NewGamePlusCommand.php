@@ -128,7 +128,7 @@ class NewGamePlusCommand implements CommandInterface
                     $title = $match[1];
 
                     // Grab the new game plus information from the wiki page
-                    preg_match('~id="' . \escapeshellcmd($hashbang) . '".*?</h[23]>(.*?)(?=<h[23]\b|$)~is', $body, $section);
+                    preg_match('~id="' . \escapeshellcmd($hashbang) . '".*?</h[234]>(.*?)(?=<h[234]\b|$)~is', $body, $section);
 
                     // Get paragraphs
                     $paragraphs = [];
