@@ -137,8 +137,7 @@
 | `!germanrap` | Link to German Dungeon Keeper rap |
 | `!novel`, `!ami` | Link to Dungeon Keeper Ami novel |
 | `!joke` | Get a joke |
-| `!cat` | Get a cat |
-| `!pussy` | Also get a cat |
+| `!cat`, `!pussy` | Get a cat |
 | `!kiss`, `!smooch` | *Smooch* |
 | `!hon`, `!honhon` | French war cry |
 | `!distro`, `!distrochooser` | Link to DistroChooser |
