@@ -152,11 +152,7 @@ class NewGamePlusCommand implements CommandInterface
                         $text = \preg_replace('/\s+/', ' ', $text);
                         $text = \trim($text);
 
-                        $output .= "\n> " . $text;
-
-                        if ($i < (\count($paragraphs) - 1)) {
-                            $output .= "\n> ";
-                        }
+                        $output .= "\n> ||" . $text . "||";
                     }
 
                     $message->channel->sendMessage(MessageBuilder::new()->setContent($output));
