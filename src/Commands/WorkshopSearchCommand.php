@@ -32,32 +32,32 @@ class WorkshopSearchCommand implements CommandInterface
 
             $body = (string)$response->getBody();
 
-            if(empty($body)){
+            if (empty($body)) {
                 $message->reply("Failed to connect to workshop...");
                 return;
             }
 
             $json = \json_decode($body, true);
-            if(empty($json) || !is_array($json) || !isset($json['workshop_items']) || !is_array($json['workshop_items'])){
+            if (empty($json) || !is_array($json) || !isset($json['workshop_items']) || !is_array($json['workshop_items'])) {
                 $message->reply("Invalid server response...");
                 return;
             }
 
             $workshop_items = $json['workshop_items'];
             $workshop_items_count = \count($json['workshop_items']);
-            
-            if($workshop_items_count <= 0){
+
+            if ($workshop_items_count <= 0) {
                 $message->channel->sendMessage(MessageBuilder::new()->setContent("No workshop items found for \"**{$search_term}**\""));
                 return;
             }
-            
-            if($workshop_items_count >= 2){
+
+            if ($workshop_items_count >= 2) {
 
                 // Create list of workshop items
                 $titles = [];
                 $count = 0;
-                foreach($workshop_items as $item){
-                    if($count >= 25){ // 25 is absolute max in a discord massage
+                foreach ($workshop_items as $item) {
+                    if ($count >= 25) { // 25 is absolute max in a discord massage
                         break;
                     }
                     $titles[] = '[**' . $item['name'] . '**](<' . $_ENV['KEEPERFX_URL'] . '/workshop/item/' . $item['id'] . '>)';
@@ -65,7 +65,7 @@ class WorkshopSearchCommand implements CommandInterface
                 }
 
                 // Add [+x more]
-                if($workshop_items_count > $count){
+                if ($workshop_items_count > $count) {
                     $leftover_count = $workshop_items_count - $count;
                     $break_char = " "; // <- Beware! This string contains a non breaking space
                     $titles[] = "... [**[+{$leftover_count}{$break_char}more]**](<{$_ENV['KEEPERFX_URL']}/workshop/browse?search=" . \urlencode($search_term) . ">)";
@@ -79,7 +79,7 @@ class WorkshopSearchCommand implements CommandInterface
                 return;
             }
 
-            if($workshop_items_count == 1){
+            if ($workshop_items_count == 1) {
 
                 // Get the item
                 $item = $workshop_items[0];
@@ -89,25 +89,25 @@ class WorkshopSearchCommand implements CommandInterface
 
                 // Get description
                 $description = null;
-                if(\is_string($item['description']) && \strlen($item['description']) > 0){
-                    if(\strlen($item['description']) > 250){
+                if (\is_string($item['description']) && \strlen($item['description']) > 0) {
+                    if (\strlen($item['description']) > 250) {
                         $description = \substr($item['description'], 0, 247) . '...';
                     } else {
                         $description = $item['description'];
                     }
 
                     $description .= PHP_EOL . PHP_EOL;
-                    if($item['ratingScore'] !== null){
+                    if ($item['ratingScore'] !== null) {
                         $description .= ':star: **Rating:** ' . $item['ratingScore'] . ' / 5' . PHP_EOL;
                     }
-                    if($item['difficultyRatingScore'] !== null){
+                    if ($item['difficultyRatingEnabled'] && $item['difficultyRatingScore'] !== null) {
                         $description .= ':dart: **Difficulty:** ' . $item['difficultyRatingScore'] . ' / 5';
                     }
                 }
 
                 // Get timestamp
                 $timestamp = new \DateTime($item['createdTimestamp']['date']);
-                if(!\is_null($item['originalCreationDate'])){
+                if (!\is_null($item['originalCreationDate'])) {
                     $timestamp = new \DateTime($item['originalCreationDate']['date']);
                 }
 
@@ -115,12 +115,12 @@ class WorkshopSearchCommand implements CommandInterface
                 $author = null;
                 $author_url = null;
                 $author_avatar_url = null;
-                if($item['originalAuthor'] !== null){
+                if ($item['originalAuthor'] !== null) {
                     $author = $item['originalAuthor'];
-                } else if($item['submitter'] !== null){
+                } else if ($item['submitter'] !== null) {
                     $author = $item['submitter']['username'];
                     $author_url = $_ENV['KEEPERFX_URL'] . '/workshop/user/' . $author;
-                    if($item['submitter']['avatarSmall'] !== null){
+                    if ($item['submitter']['avatarSmall'] !== null) {
                         $author_avatar_url = $_ENV['KEEPERFX_URL'] . '/avatar/' . $item['submitter']['avatarSmall'];
                     }
                 } else {
@@ -129,10 +129,10 @@ class WorkshopSearchCommand implements CommandInterface
 
                 // Get author object
                 $author_obj = ['name' => \htmlentities($author)];
-                if($author_url){
+                if ($author_url) {
                     $author_obj['url'] = $author_url;
                 }
-                if($author_avatar_url){
+                if ($author_avatar_url) {
                     $author_obj['icon_url'] = $author_avatar_url;
                 }
 
@@ -152,7 +152,6 @@ class WorkshopSearchCommand implements CommandInterface
                 $message->channel->sendEmbed($embed);
                 return;
             }
-
         }, function (\Exception $e) {
             echo 'Error: ' . $e->getMessage() . PHP_EOL;
         });
