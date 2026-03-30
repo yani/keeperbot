@@ -68,7 +68,8 @@ class KeeperBot
             return;
         }
 
-        $full_command = \trim($message->content);
+        $full_command = explode("\n", $message->content)[0];
+        $full_command = \trim($full_command);
         $full_command = \substr($full_command, 1);
 
         $command_parts = $this->parseCommand($full_command);
