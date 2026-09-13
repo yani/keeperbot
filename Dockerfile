@@ -1,11 +1,10 @@
-FROM alpine:3.21
+FROM alpine:3.24.1
 
 # Install necessary packages
 RUN apk update && apk add --no-cache \
-    php83 \
-    php83-mbstring \
-    php83-curl \
-    php83-json \
+    php85 \
+    php85-mbstring \
+    php85-curl \
     curl \
     composer
 
