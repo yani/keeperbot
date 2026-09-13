@@ -5,7 +5,6 @@ namespace Yani\KeeperBot\Commands;
 use Discord\Discord;
 use Discord\Parts\Embed\Embed;
 use Discord\Parts\Channel\Message;
-use Discord\Builders\MessageBuilder;
 
 use Yani\KeeperBot\CommandInterface;
 use Yani\KeeperBot\Utility;
@@ -17,8 +16,7 @@ class MoonPhaseCommand implements CommandInterface
     public function getCommandConfig(): array
     {
         return [
-            'command'        => ['moon', 'moonphase'],
-            'has_parameters' => false,
+            'command' => ['moon'],
         ];
     }
 
@@ -26,7 +24,7 @@ class MoonPhaseCommand implements CommandInterface
     {
         $browser = Utility::createBrowserInstance();
         $browser->get($_ENV['KEEPERFX_URL'] . '/api/v1/moonphase')
-            ->then(function (ResponseInterface $response) use ($message, $discord) {
+            ->then(function (ResponseInterface $response) use ($message, $discord, $parameters) {
 
                 // Get body of response
                 $body = (string)$response->getBody();
@@ -53,42 +51,32 @@ class MoonPhaseCommand implements CommandInterface
                 $is_near_new_moon  = (bool) $json['is_near_new_moon'];
                 $next_new_moon     = new \DateTime((string)($json['next_new_moon']['date']));
 
-                // Add whether or not full moon levels are available or visible or not
-                $description = 'Full Moon levels: ';
-                if ($is_full_moon){
-                    $description .= '**AVAILABLE**';
-                } else if ($is_near_full_moon) {
-                    $description .= 'Visible';
-                } else {
-                    $description .= '_Not available_';
-                }
-                
-                // Add next full moon
-                if(!$is_full_moon){
-                    $description .= PHP_EOL;
-                    $description .= "Next Full Moon: <t:{$next_full_moon->getTimestamp()}:R>";
+                // Check if the user has only asked for the moon phase
+                if(\count($parameters) === 1 && \is_string($parameters[0]) && $parameters[0] === "phase") {
+                    $message->reply("The current moon phase is `{$phase}` ({$title})");
+                    return; 
                 }
 
-                // Add whether or not new moon levels are available or visible or not
-                $description .= PHP_EOL. PHP_EOL;
-                $description .= 'New Moon levels: ';
-                if ($is_new_moon){
-                    $description .= '**AVAILABLE**';
-                } else if ($is_near_new_moon) {
-                    $description .= 'Visible';
+                // Start the message
+                if($is_full_moon) {
+                    $description = "It is currently a **full moon**. \nThe secret full moon levels are **available** and can be played.";
+                } else if($is_near_full_moon) {
+                    $description = "We are near a full moon. \nThe secret full moon levels are **visible but can not be played** at this time.";
+                } else if($is_new_moon) {
+                    $description = "It is currently a **new moon**. \nThe new moon levels are **available** and can be played.";
+                } else if($is_near_new_moon) {
+                    $description = "We are near a new moon. \nThe secret new moon levels are **visible but can not be played** at this time.";
                 } else {
-                    $description .= '_Not available_';
+                    $description = "We are currently in between moons. \nNone of the secret levels are visible or playable.";
                 }
-                
-                // Add next new moon
-                if(!$is_new_moon){
-                    $description .= PHP_EOL;
-                    $description .= "Next New Moon: <t:{$next_new_moon->getTimestamp()}:R>";
-                }
-                
-                // Add phase
+
+                // Start next paragraph
                 $description .= PHP_EOL . PHP_EOL;
-                $description .= "Phase: `{$phase}`";
+
+                // Give information for when the next full moon and new moon is
+                $description .= "The next full moon is <t:{$next_full_moon->getTimestamp()}:R>.";
+                $description .= PHP_EOL;
+                $description .= "The next new moon is <t:{$next_new_moon->getTimestamp()}:R>.";
 
                 // Create embed for the alpha patch
                 $embed = new Embed($discord, [

@@ -37,7 +37,7 @@
 | `!history` | Link to KeeperFX history |
 | `!commands`, `!script` | Link to map commands |
 | `!trailer` | Link to the KeeperFX trailer on YouTube |
-| `!moon`, `!moonphase` | Show KeeperFX moon phase information |
+| `!moon`, `!moon phase` | Show KeeperFX moon information or show its current phase |
 | `!packetsave`, `!packetload`, `!packets` | Show information about packetsaves |
 | `!ng+`, `!ng`, `!ngp`, `!newgameplus` | Show information about the New Game Plus campaign |
 | `!ng+ <level>`, `!ng <level>`, `!ngp <level>`, `!newgameplus <level>` | Show information about a level in the New Game Plus campaign |
