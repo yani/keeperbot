@@ -18,7 +18,12 @@ cd keeperbot
 composer install --no-dev
 ```
 
-2. Edit `.env` file and set the `DISCORD_BOT_TOKEN` to the token of your bot
+2. Copy the `.env.example` file as `.env` and setup the environment variable `DISCORD_BOT_TOKEN`:
+
+```
+cp .env.example .env
+nano .env
+```
 
 3. Run the following command:
 
