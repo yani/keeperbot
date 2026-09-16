@@ -16,7 +16,8 @@ class MoonPhaseCommand implements CommandInterface
     public function getCommandConfig(): array
     {
         return [
-            'command' => ['moon'],
+            'command'        => ['moon', 'moonphase'],
+            'has_parameters' => false,
         ];
     }
 
@@ -24,7 +25,7 @@ class MoonPhaseCommand implements CommandInterface
     {
         $browser = Utility::createBrowserInstance();
         $browser->get($_ENV['KEEPERFX_URL'] . '/api/v1/moonphase')
-            ->then(function (ResponseInterface $response) use ($message, $discord, $parameters) {
+            ->then(function (ResponseInterface $response) use ($message, $discord) {
 
                 // Get body of response
                 $body = (string)$response->getBody();
@@ -50,12 +51,6 @@ class MoonPhaseCommand implements CommandInterface
                 $is_new_moon       = (bool) $json['is_new_moon'];
                 $is_near_new_moon  = (bool) $json['is_near_new_moon'];
                 $next_new_moon     = new \DateTime((string)($json['next_new_moon']['date']));
-
-                // Check if the user has only asked for the moon phase
-                if(\count($parameters) === 1 && \is_string($parameters[0]) && $parameters[0] === "phase") {
-                    $message->reply("The current moon phase is `{$phase}` ({$title})");
-                    return; 
-                }
 
                 // Start the message
                 if($is_full_moon) {
