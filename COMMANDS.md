@@ -123,6 +123,7 @@
 
 | Command | Description |
 |----------|-------------|
+| `!math <expression>, !calc <expression>, !calculate <expression>` | Calculate a math expression |
 | `!slap <person>` | Slap a person |
 | `!taunt` | Random taunt |
 | `!taunt <person>` | Taunt a person |

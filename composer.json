@@ -21,7 +21,8 @@
         "psr/http-client": "^1.0",
         "p3k/timezone": "^0.1.0",
         "guzzlehttp/guzzle": "^7.9",
-        "xenokore/utility": "^2.0"
+        "xenokore/utility": "^2.0",
+        "nxp/math-executor": "^2.4"
     },
     "config": {
         "allow-plugins": {
