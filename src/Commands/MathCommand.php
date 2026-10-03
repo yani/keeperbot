@@ -25,17 +25,25 @@ class MathCommand implements CommandInterface
         $expression = Utility::combineParameters($parameters);
 
         try {
+            
             $executor = new MathExecutor();
+            $executor->addFunction('average', function(...$args) {return array_sum($args) / count($args);});
+
             $result   = $executor->execute($expression);
+
             if($result === INF) {
                 $message->reply("I can't count that far buddy");
                 return;
             }
+
             $message->reply("{$expression} = **{$result}**");
+
         } catch (UnknownVariableException $e) {
             $message->reply("Unknown variable detected");
+
         } catch (DivisionByZeroException $e) {
             $message->reply("DIVIDE BY ZERO DETECTED :rotating_light: CALL THE POLICE");
+            
         } catch (\Exception $e) {
             $message->reply("I don't know what you're trying to do here, Jimmy Neutron");
         }
