@@ -52,7 +52,7 @@ class AlphaPatchCommand extends BackgroundCommand implements CommandInterface, B
             $message,
             [$build_id],
             $this,
-            60,
+            120,
             30,
             new \DateTime('now')
         ));
