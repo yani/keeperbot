@@ -27,11 +27,10 @@ class DefineCommand implements CommandInterface
         $parameter_string = Utility::combineParameters($parameters);
 
         $browser = Utility::createBrowserInstance();
-        $browser->get('https://api.dictionaryapi.dev/api/v2/entries/en/' . \urlencode($parameter_string))
+        $browser->get('https://freedictionaryapi.com/api/v1/entries/en/' . \urlencode($parameter_string))
             ->then(function (ResponseInterface $response) use ($message, $discord, $parameter_string) {
 
-                if($response->getStatusCode() === 404)
-                {
+                if ($response->getStatusCode() === 404) {
                     $message->reply('No definition found');
                     return;
                 }
@@ -50,47 +49,58 @@ class DefineCommand implements CommandInterface
                     return;
                 }
 
-                // Check if there is a message to reply
-                if(isset($json['message']) && \is_string($json['message']))
-                {
+                // Check if API returned an error message
+                if (isset($json['message']) && \is_string($json['message'])) {
                     $message->reply($json['message']);
                     return;
                 }
 
-                if(empty($json[0]))
-                {
-                    $message->reply('Something went wrong...');
+                if (empty($json['entries'])) {
+                    $message->reply('No definition found');
                     return;
                 }
 
                 $description = '';
 
-                // Check for phonetic
-                $phonetic = $json[0]['phonetic'] ?? null;
-                if($phonetic){
-                    $description .= '`' . $phonetic . '`' . PHP_EOL;
+                // Try to get the first available IPA pronunciation text
+                $phonetic = null;
+                foreach ($json['entries'] as $entry) {
+                    if (!empty($entry['pronunciations'])) {
+                        foreach ($entry['pronunciations'] as $pron) {
+                            if (!empty($pron['text'])) {
+                                $phonetic = $pron['text'];
+                                break 2;
+                            }
+                        }
+                    }
                 }
 
-                // Check for meanings
-                if(!empty($json[0]['meanings']))
-                {
-                    foreach($json[0]['meanings'] as $meaning)
-                    {
-                        $description .= '### ' . $meaning['partOfSpeech'] . PHP_EOL;
+                if ($phonetic) {
+                    $description .= '`' . $phonetic . '`' . \PHP_EOL . \PHP_EOL;
+                }
 
-                        foreach($meaning['definitions'] as $definition)
-                        {
-                            $description .= '- ' . $definition['definition'] . \PHP_EOL;
-                        }
-
-                        $description . \PHP_EOL;
+                // Parse entries, parts of speech, and definitions (senses)
+                foreach ($json['entries'] as $entry) {
+                    if (empty($entry['senses'])) {
+                        continue;
                     }
+
+                    $partOfSpeech = $entry['partOfSpeech'] ?? 'definition';
+                    $description .= '### ' . $partOfSpeech . \PHP_EOL;
+
+                    foreach ($entry['senses'] as $sense) {
+                        if (!empty($sense['definition'])) {
+                            $description .= '- ' . $sense['definition'] . \PHP_EOL;
+                        }
+                    }
+
+                    $description .= \PHP_EOL;
                 }
 
                 // Create embed
                 $embed = new Embed($discord, [
-                    'title'       => $json[0]['word'] ?? $parameter_string,
-                    'description' => $description,
+                    'title'       => $json['word'] ?? $parameter_string,
+                    'description' => \mb_strimwidth($description, 0, 4096, '...'), // Prevent Discord embed limits
                     'color'       => 16777215,
                 ]);
 
@@ -98,33 +108,15 @@ class DefineCommand implements CommandInterface
                 $message->channel->sendEmbed($embed);
             }, function (\Exception $e) use ($message) {
 
-                if($e->getCode() === 404)
-                {
+                if ($e->getCode() === 404) {
                     $message->reply('No definition found');
                     return;
                 }
+
+                echo "Error: " . $e->getMessage() . \PHP_EOL;
 
                 $message->reply('Something went wrong...');
 
             });
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                
