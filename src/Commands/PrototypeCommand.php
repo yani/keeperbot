@@ -56,7 +56,7 @@ class PrototypeCommand extends BackgroundCommand implements CommandInterface, Ba
             $message,
             [$run_id],
             $this,
-            60,
+            120,
             30,
             new \DateTime('now')
         ));
