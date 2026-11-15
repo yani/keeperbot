@@ -22,7 +22,7 @@ return [
     // DK1 / KFX
     'keeperfx'        => 'https://keeperfx.net',
     'trailer'         => 'https://youtu.be/__Xawmgtgcw',
-    'lubiki'          => 'https://lubiki.keeperklan.com/index.php',
+    'lubiki'          => 'https://keeper.lubiki.pl/', // 'https://lubiki.keeperklan.com/index.php',
     'unearth'         => 'https://keeperfx.net/workshop/item/1/unearth',
     'implauncher'     => 'https://keeperfx.net/workshop/item/410/implauncher-beta',
     'workshop'        => 'You can find custom KeeperFX content like custom maps, campaigns, tools, assets, and much more on the KeeperFX.net workshop: https://keeperfx.net/workshop/browse',
