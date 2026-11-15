@@ -143,6 +143,7 @@
 | `!hon`, `!honhon` | French war cry |
 | `!distro`, `!distrochooser` | Link to DistroChooser |
 | `!inspire` | Get an InspiroBot quote |
+| `!surrender`, `!gg` | Surrender. Reply this to a message to surrender to its author. |
 
 ---
 
