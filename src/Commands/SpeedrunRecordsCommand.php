@@ -33,7 +33,7 @@ class SpeedrunRecordsCommand implements CommandInterface
             $game_name = 'Dungeon Keeper 1';
             $game = 'dk1';
             $category_name = 'Full game - Any%';
-            $category = 'Full_game_any';
+            $category = '824xvpmd';
         } else if(\in_array(\strtolower($param), ['2', 'dk2', 'dungeonkeeper2', 'dungeon keeper 2'])){
             $game_name = 'Dungeon Keeper 2';
             $game = 'dk2';
